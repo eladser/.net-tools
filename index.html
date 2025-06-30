@@ -64,29 +64,21 @@
                             <span class="tab-icon">🎯</span>
                             Code Generators
                         </button>
-                        <button class="tab-button" data-tab="smart-converters">
+                        <button class="tab-button" data-tab="converters">
                             <span class="tab-icon">🔄</span>
-                            Smart Converters
+                            Converters
                         </button>
-                        <button class="tab-button" data-tab="validators">
-                            <span class="tab-icon">✅</span>
-                            Validators & Testing
-                        </button>
-                        <button class="tab-button" data-tab="formatters">
+                        <button class="tab-button" data-tab="text-tools">
                             <span class="tab-icon">📝</span>
-                            Code Formatters
-                        </button>
-                        <button class="tab-button" data-tab="aspnet-tools">
-                            <span class="tab-icon">🌐</span>
-                            ASP.NET Tools
-                        </button>
-                        <button class="tab-button" data-tab="utilities">
-                            <span class="tab-icon">🛠️</span>
-                            Dev Utilities
+                            Text & Format
                         </button>
                         <button class="tab-button" data-tab="security">
                             <span class="tab-icon">🔐</span>
-                            Security Tools
+                            Security
+                        </button>
+                        <button class="tab-button" data-tab="utilities">
+                            <span class="tab-icon">🛠️</span>
+                            Utilities
                         </button>
                     </div>
 
@@ -123,7 +115,7 @@
                                     <div class="tool-header">
                                         <div class="tool-icon">🏗️</div>
                                         <div>
-                                            <h3>C# Model Generator</h3>
+                                            <h3>C# Entity Generator</h3>
                                             <span class="tool-badge">New</span>
                                         </div>
                                     </div>
@@ -145,38 +137,6 @@
                                         </div>
                                         <button onclick="generateCsharpModel()" class="btn btn-primary">Generate Code</button>
                                         <pre id="modelOutput" class="output"></pre>
-                                    </div>
-                                </div>
-
-                                <div class="tool-card">
-                                    <div class="tool-header">
-                                        <div class="tool-icon">🎯</div>
-                                        <div>
-                                            <h3>Advanced GUID Generator</h3>
-                                        </div>
-                                    </div>
-                                    <p>Generate GUIDs in multiple formats with bulk generation and validation features.</p>
-                                    <div class="tool-content">
-                                        <div class="generator-options">
-                                            <label>Count: <input type="number" id="guidCount" value="1" min="1" max="100"></label>
-                                            <label>Format:
-                                                <select id="guidFormat">
-                                                    <option value="standard">Standard</option>
-                                                    <option value="nohyphens">No Hyphens</option>
-                                                    <option value="braces">With Braces</option>
-                                                    <option value="csharp">C# Constructor</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div class="button-group">
-                                            <button onclick="generateGuids()" class="btn btn-primary">Generate GUIDs</button>
-                                            <button onclick="validateGuid()" class="btn btn-secondary">Validate GUID</button>
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" id="guidValidationInput" placeholder="Enter GUID to validate...">
-                                        </div>
-                                        <div id="guidValidationResult" class="validation-result"></div>
-                                        <pre id="guidOutput" class="output"></pre>
                                     </div>
                                 </div>
 
@@ -215,11 +175,43 @@
                                         <textarea id="connectionStringOutput" class="output" readonly></textarea>
                                     </div>
                                 </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🎯</div>
+                                        <div>
+                                            <h3>Advanced GUID Generator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate GUIDs in multiple formats with bulk generation and validation features.</p>
+                                    <div class="tool-content">
+                                        <div class="generator-options">
+                                            <label>Count: <input type="number" id="guidCount" value="1" min="1" max="100"></label>
+                                            <label>Format:
+                                                <select id="guidFormat">
+                                                    <option value="standard">Standard</option>
+                                                    <option value="nohyphens">No Hyphens</option>
+                                                    <option value="braces">With Braces</option>
+                                                    <option value="csharp">C# Constructor</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="generateGuids()" class="btn btn-primary">Generate GUIDs</button>
+                                            <button onclick="validateGuid()" class="btn btn-secondary">Validate GUID</button>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="guidValidationInput" placeholder="Enter GUID to validate...">
+                                        </div>
+                                        <div id="guidValidationResult" class="validation-result"></div>
+                                        <pre id="guidOutput" class="output"></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Smart Converters Tab -->
-                        <div class="tab-panel" id="smart-converters">
+                        <!-- Converters Tab -->
+                        <div class="tab-panel" id="converters">
                             <div class="tools-grid">
                                 <div class="tool-card">
                                     <div class="tool-header">
@@ -374,9 +366,327 @@
                             </div>
                         </div>
 
-                        <!-- Continue with remaining tabs... -->
-                        <!-- I'll continue with the remaining tabs in the next part -->
-                        
+                        <!-- Text & Format Tab -->
+                        <div class="tab-panel" id="text-tools">
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📊</div>
+                                        <div>
+                                            <h3>Text Analytics</h3>
+                                        </div>
+                                    </div>
+                                    <p>Analyze text for character count, word frequency, reading time, and more metrics.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <textarea id="textAnalysisInput" placeholder="Enter text to analyze..." rows="6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+                                        </div>
+                                        <button onclick="analyzeText()" class="btn btn-primary">Analyze Text</button>
+                                        <div class="text-stats" id="textStats"></div>
+                                        <div id="wordFrequency" class="output"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🎭</div>
+                                        <div>
+                                            <h3>Lorem Ipsum Generator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate customizable Lorem Ipsum text for your development and design needs.</p>
+                                    <div class="tool-content">
+                                        <div class="lorem-options">
+                                            <label>Type:
+                                                <select id="loremType">
+                                                    <option value="paragraphs">Paragraphs</option>
+                                                    <option value="words">Words</option>
+                                                    <option value="sentences">Sentences</option>
+                                                </select>
+                                            </label>
+                                            <label>Count: <input type="number" id="loremCount" value="3" min="1" max="50"></label>
+                                            <label><input type="checkbox" id="startWithLorem" checked> Start with "Lorem ipsum"</label>
+                                        </div>
+                                        <button onclick="generateLorem()" class="btn btn-primary">Generate Lorem Ipsum</button>
+                                        <pre id="loremOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔀</div>
+                                        <div>
+                                            <h3>JSON Formatter & Validator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Format, validate, and minify JSON with error highlighting and path navigation.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <textarea id="jsonFormatterInput" placeholder="Paste your JSON here..." rows="8">{"name":"John","age":30,"city":"New York","hobbies":["reading","swimming"]}</textarea>
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="formatJson()" class="btn btn-primary">Format JSON</button>
+                                            <button onclick="minifyJson()" class="btn btn-secondary">Minify JSON</button>
+                                            <button onclick="validateJson()" class="btn btn-outline">Validate JSON</button>
+                                        </div>
+                                        <div id="jsonValidationResult" class="validation-result"></div>
+                                        <pre id="jsonFormatterOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">✨</div>
+                                        <div>
+                                            <h3>Regular Expression Tester</h3>
+                                        </div>
+                                    </div>
+                                    <p>Test and debug regular expressions with real-time matching and common pattern library.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Pattern:</label>
+                                            <input type="text" id="regexPattern" placeholder="Enter regex pattern..." value="\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Test String:</label>
+                                            <textarea id="regexTestString" placeholder="Enter test string..." rows="4">Contact us at support@example.com or admin@test.org for help.</textarea>
+                                        </div>
+                                        <div class="regex-options">
+                                            <label><input type="checkbox" id="regexGlobal" checked> Global</label>
+                                            <label><input type="checkbox" id="regexCaseInsensitive"> Case Insensitive</label>
+                                            <label><input type="checkbox" id="regexMultiline"> Multiline</label>
+                                        </div>
+                                        <button onclick="testRegex()" class="btn btn-primary">Test Regex</button>
+                                        <div id="regexResults" class="output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Tab -->
+                        <div class="tab-panel" id="security">
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔐</div>
+                                        <div>
+                                            <h3>Password Generator & Analyzer</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate secure passwords and analyze strength with entropy calculation and breach checking.</p>
+                                    <div class="tool-content">
+                                        <div class="password-options">
+                                            <label>Length: <input type="number" id="passwordLength" value="16" min="4" max="128"></label>
+                                            <label><input type="checkbox" id="includeUppercase" checked> Uppercase</label>
+                                            <label><input type="checkbox" id="includeLowercase" checked> Lowercase</label>
+                                            <label><input type="checkbox" id="includeNumbers" checked> Numbers</label>
+                                            <label><input type="checkbox" id="includeSymbols"> Symbols</label>
+                                            <label><input type="checkbox" id="excludeSimilar"> Exclude Similar</label>
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="generatePassword()" class="btn btn-primary">Generate Password</button>
+                                            <button onclick="analyzePassword()" class="btn btn-secondary">Analyze Strength</button>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="generatedPassword" placeholder="Generated password or enter password to analyze...">
+                                        </div>
+                                        <div id="passwordStrengthResult" class="password-strength-result"></div>
+                                        <div id="passwordSuggestions" class="password-suggestions"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔗</div>
+                                        <div>
+                                            <h3>Hash Generator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate MD5, SHA-1, SHA-256, and other hash values for text and files.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <textarea id="hashInput" placeholder="Enter text to hash..." rows="4">Hello, World!</textarea>
+                                        </div>
+                                        <div class="hash-options">
+                                            <label><input type="checkbox" id="generateMD5" checked> MD5</label>
+                                            <label><input type="checkbox" id="generateSHA1" checked> SHA-1</label>
+                                            <label><input type="checkbox" id="generateSHA256" checked> SHA-256</label>
+                                        </div>
+                                        <button onclick="generateHashes()" class="btn btn-primary">Generate Hashes</button>
+                                        <div id="hashResults" class="hash-results"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🎫</div>
+                                        <div>
+                                            <h3>JWT Token Decoder</h3>
+                                        </div>
+                                    </div>
+                                    <p>Decode and validate JWT tokens with header, payload, and signature verification.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <textarea id="jwtInput" placeholder="Paste JWT token here..." rows="6">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</textarea>
+                                        </div>
+                                        <button onclick="decodeJWT()" class="btn btn-primary">Decode JWT</button>
+                                        <div id="jwtResults" class="jwt-results"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📱</div>
+                                        <div>
+                                            <h3>QR Code Generator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate QR codes for URLs, text, WiFi credentials, and more with customizable size and error correction.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <textarea id="qrText" placeholder="Enter text or URL for QR code..." rows="3">https://github.com/eladser/.net-tools</textarea>
+                                        </div>
+                                        <div class="qr-options">
+                                            <label>Size:
+                                                <select id="qrSize">
+                                                    <option value="200">200x200</option>
+                                                    <option value="300" selected>300x300</option>
+                                                    <option value="400">400x400</option>
+                                                    <option value="500">500x500</option>
+                                                </select>
+                                            </label>
+                                            <label>Error Correction:
+                                                <select id="qrErrorCorrection">
+                                                    <option value="L">Low</option>
+                                                    <option value="M" selected>Medium</option>
+                                                    <option value="Q">Quartile</option>
+                                                    <option value="H">High</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <button onclick="generateQRCode()" class="btn btn-primary">Generate QR Code</button>
+                                        <div id="qrOutput" class="qr-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Utilities Tab -->
+                        <div class="tab-panel" id="utilities">
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📏</div>
+                                        <div>
+                                            <h3>Unit Converter</h3>
+                                        </div>
+                                    </div>
+                                    <p>Convert between various units including length, weight, temperature, and data size.</p>
+                                    <div class="tool-content">
+                                        <div class="unit-inputs">
+                                            <label>Category:
+                                                <select id="unitCategory" onchange="updateUnitOptions()">
+                                                    <option value="length">Length</option>
+                                                    <option value="weight">Weight</option>
+                                                    <option value="temperature">Temperature</option>
+                                                    <option value="data">Data Size</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="unit-inputs">
+                                            <input type="number" id="unitValue" placeholder="Enter value..." value="1">
+                                            <select id="fromUnit"></select>
+                                            <span>to</span>
+                                            <select id="toUnit"></select>
+                                        </div>
+                                        <button onclick="convertUnits()" class="btn btn-primary">Convert</button>
+                                        <div id="unitResult" class="result-item">
+                                            <label>Result:</label>
+                                            <span id="unitResultValue" class="selectable"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📅</div>
+                                        <div>
+                                            <h3>Date Calculator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Calculate date differences, add/subtract time periods, and find business days.</p>
+                                    <div class="tool-content">
+                                        <div class="date-inputs">
+                                            <label>Start Date:</label>
+                                            <input type="date" id="startDate">
+                                            <label>End Date:</label>
+                                            <input type="date" id="endDate">
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="calculateDateDifference()" class="btn btn-primary">Calculate Difference</button>
+                                            <button onclick="addDaysToDate()" class="btn btn-secondary">Add Days</button>
+                                        </div>
+                                        <div class="date-inputs">
+                                            <label>Days to add/subtract:</label>
+                                            <input type="number" id="daysToAdd" value="30">
+                                        </div>
+                                        <div id="dateResults" class="date-results"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🎲</div>
+                                        <div>
+                                            <h3>Random Data Generator</h3>
+                                        </div>
+                                    </div>
+                                    <p>Generate random test data including names, emails, addresses, and custom formats.</p>
+                                    <div class="tool-content">
+                                        <div class="random-options">
+                                            <label>Data Type:
+                                                <select id="randomDataType">
+                                                    <option value="names">Names</option>
+                                                    <option value="emails">Email Addresses</option>
+                                                    <option value="phones">Phone Numbers</option>
+                                                    <option value="addresses">Addresses</option>
+                                                    <option value="companies">Company Names</option>
+                                                    <option value="numbers">Random Numbers</option>
+                                                </select>
+                                            </label>
+                                            <label>Count: <input type="number" id="randomCount" value="10" min="1" max="100"></label>
+                                        </div>
+                                        <button onclick="generateRandomData()" class="btn btn-primary">Generate Data</button>
+                                        <pre id="randomOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📐</div>
+                                        <div>
+                                            <h3>Number Base Converter</h3>
+                                        </div>
+                                    </div>
+                                    <p>Convert numbers between binary, octal, decimal, and hexadecimal with bit manipulation tools.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <input type="text" id="numberInput" placeholder="Enter number..." value="255">
+                                            <label>Input Base:
+                                                <select id="inputBase">
+                                                    <option value="10" selected>Decimal</option>
+                                                    <option value="2">Binary</option>
+                                                    <option value="8">Octal</option>
+                                                    <option value="16">Hexadecimal</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <button onclick="convertNumberBase()" class="btn btn-primary">Convert</button>
+                                        <div class="base-results" id="baseResults"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
