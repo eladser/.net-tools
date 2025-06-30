@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,127 +22,212 @@
                 <li><a href="version-comparison.html" class="nav-link">Version Comparison</a></li>
                 <li><a href="contact.html" class="nav-link active">Contact</a></li>
                 <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
+                <li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <header class="page-header">
-        <div class="container">
-            <h1>Contact & Support</h1>
-            <p>Get in touch, contribute to the project, or show your support</p>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title animated-title">Contact & Support</h1>
+            <p class="hero-subtitle">Get in touch, contribute to the project, or show your support for .NET Tools</p>
+        </div>
+        <div class="hero-background">
+            <div class="floating-elements">
+                <div class="floating-element">📧</div>
+                <div class="floating-element">🤝</div>
+                <div class="floating-element">💬</div>
+                <div class="floating-element">⭐</div>
+                <div class="floating-element">🚀</div>
+            </div>
         </div>
     </header>
 
-    <main class="contact-main">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-section">
-                    <div class="contact-card">
-                        <div class="contact-icon">🐛</div>
-                        <h3>Report Issues</h3>
-                        <p>Found a bug or have a feature request? Create an issue on our GitHub repository.</p>
-                        <a href="https://github.com/eladser/.net-tools/issues/new" class="btn btn-primary" target="_blank">Report Issue</a>
-                    </div>
+    <main>
+        <section class="tools-section">
+            <div class="container">
+                <div class="tools-tabs animate-on-scroll">
+                    <div class="tab-content">
+                        <div class="tab-panel active">
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🐛</div>
+                                        <h3>Report Issues</h3>
+                                    </div>
+                                    <p>Found a bug or have a feature request? Create an issue on our GitHub repository and help us improve the tools.</p>
+                                    <div class="tool-content">
+                                        <a href="https://github.com/eladser/.net-tools/issues/new" class="btn btn-primary" target="_blank">Report Issue</a>
+                                        <div class="contact-info">
+                                            <small>Help us make .NET Tools better by reporting bugs, suggesting features, or sharing your feedback.</small>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div class="contact-card">
-                        <div class="contact-icon">🚀</div>
-                        <h3>Feature Requests</h3>
-                        <p>Have an idea for a new tool or improvement? We'd love to hear your suggestions!</p>
-                        <a href="https://github.com/eladser/.net-tools/issues/new?template=feature_request.md" class="btn btn-primary" target="_blank">Request Feature</a>
-                    </div>
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🚀</div>
+                                        <h3>Feature Requests</h3>
+                                    </div>
+                                    <p>Have an idea for a new tool or improvement? We'd love to hear your suggestions and implement useful features!</p>
+                                    <div class="tool-content">
+                                        <a href="https://github.com/eladser/.net-tools/issues/new?template=feature_request.md" class="btn btn-primary" target="_blank">Request Feature</a>
+                                        <div class="contact-info">
+                                            <small>Your ideas help shape the future of .NET Tools. Every suggestion is carefully considered.</small>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div class="contact-card">
-                        <div class="contact-icon">🤝</div>
-                        <h3>Contribute</h3>
-                        <p>Want to contribute code, documentation, or ideas? Check out our contribution guidelines.</p>
-                        <a href="https://github.com/eladser/.net-tools/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">Contribute</a>
-                    </div>
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🤝</div>
+                                        <h3>Contribute</h3>
+                                    </div>
+                                    <p>Want to contribute code, documentation, or ideas? Check out our contribution guidelines and join our community.</p>
+                                    <div class="tool-content">
+                                        <a href="https://github.com/eladser/.net-tools/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">Contribute</a>
+                                        <div class="contact-info">
+                                            <small>Whether you're a seasoned developer or just starting out, your contributions are welcome!</small>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div class="contact-card">
-                        <div class="contact-icon">⭐</div>
-                        <h3>Star the Project</h3>
-                        <p>If you find .NET Tools helpful, please consider starring the repository on GitHub!</p>
-                        <a href="https://github.com/eladser/.net-tools" class="btn btn-github" target="_blank">
-                            <span>⭐ Star on GitHub</span>
-                        </a>
-                        <div class="github-stats">
-                            <iframe src="https://ghbtns.com/github-btn.html?user=eladser&repo=.net-tools&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">⭐</div>
+                                        <h3>Star the Project</h3>
+                                    </div>
+                                    <p>If you find .NET Tools helpful, please consider starring the repository on GitHub to show your support!</p>
+                                    <div class="tool-content">
+                                        <a href="https://github.com/eladser/.net-tools" class="btn btn-primary github-star-btn" target="_blank">
+                                            ⭐ Star on GitHub
+                                        </a>
+                                        <div class="github-stats">
+                                            <iframe src="https://ghbtns.com/github-btn.html?user=eladser&repo=.net-tools&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔄</div>
+                                        <h3>Share with Others</h3>
+                                    </div>
+                                    <p>Help spread the word about .NET Tools! Share it with your colleagues, friends, and the developer community.</p>
+                                    <div class="tool-content">
+                                        <div class="share-buttons">
+                                            <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20.NET%20Tools%20website!&url=https://eladser.github.io/.net-tools" class="btn btn-secondary" target="_blank">Share on Twitter</a>
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://eladser.github.io/.net-tools" class="btn btn-secondary" target="_blank">Share on LinkedIn</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">👨‍💻</div>
+                                        <h3>About the Developer</h3>
+                                    </div>
+                                    <p>Passionate .NET developer who believes in making development tools accessible to everyone in the community.</p>
+                                    <div class="tool-content">
+                                        <div class="developer-info">
+                                            <div class="developer-avatar">
+                                                <img src="https://github.com/eladser.png" alt="Developer Avatar" width="60" height="60">
+                                            </div>
+                                            <div class="developer-details">
+                                                <h4>eladser</h4>
+                                                <p>Full-stack .NET developer focused on creating useful tools for the development community.</p>
+                                                <a href="https://github.com/eladser" class="btn btn-outline" target="_blank">GitHub Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="support-section">
-                    <div class="support-card">
-                        <h2>Support the Project</h2>
-                        <p>This project is open source and completely free to use. If you find it valuable, here are ways you can support it:</p>
-                        
-                        <div class="support-options">
-                            <div class="support-option">
-                                <h4>🌟 Star the Repository</h4>
-                                <p>The easiest way to show support! Stars help other developers discover the project.</p>
-                            </div>
-                            
-                            <div class="support-option">
-                                <h4>🔄 Share with Others</h4>
-                                <p>Tell your colleagues and friends about .NET Tools. Word of mouth is the best promotion!</p>
-                                <div class="share-buttons">
-                                    <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20.NET%20Tools%20website!&url=https://eladser.github.io/.net-tools" class="btn btn-twitter" target="_blank">Share on Twitter</a>
-                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://eladser.github.io/.net-tools" class="btn btn-linkedin" target="_blank">Share on LinkedIn</a>
-                                </div>
-                            </div>
-                            
-                            <div class="support-option">
-                                <h4>🛠️ Contribute Code</h4>
-                                <p>Help improve the tools, add new features, or fix bugs. All contributions are welcome!</p>
-                            </div>
-                            
-                            <div class="support-option">
-                                <h4>📝 Improve Documentation</h4>
-                                <p>Help make the project more accessible by improving documentation and examples.</p>
-                            </div>
+                <!-- Project Statistics Section -->
+                <div class="project-stats animate-on-scroll">
+                    <h2 class="section-title">Project Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="toolsCount">36</div>
+                            <div class="stat-label">Available Tools</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="versionsCount">10</div>
+                            <div class="stat-label">.NET Versions Covered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="githubStars">-</div>
+                            <div class="stat-label">GitHub Stars</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Free & Open Source</div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="developer-info">
-                        <h3>About the Developer</h3>
-                        <div class="developer-card">
-                            <div class="developer-avatar">
-                                <img src="https://github.com/eladser.png" alt="Developer Avatar" width="80" height="80">
+                <!-- Support Options Section -->
+                <div class="support-section animate-on-scroll">
+                    <h2 class="section-title">Ways to Support .NET Tools</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">🌟</div>
+                                <h3>Star the Repository</h3>
                             </div>
-                            <div class="developer-details">
-                                <h4>eladser</h4>
-                                <p>Passionate .NET developer who believes in making development tools accessible to everyone.</p>
-                                <div class="developer-links">
-                                    <a href="https://github.com/eladser" class="btn btn-outline" target="_blank">GitHub Profile</a>
-                                </div>
+                            <p>The easiest way to show support! Stars help other developers discover the project and motivate continued development.</p>
+                        </div>
+
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">🛠️</div>
+                                <h3>Contribute Code</h3>
                             </div>
+                            <p>Help improve the tools, add new features, or fix bugs. All contributions are welcome, from beginners to experts!</p>
+                        </div>
+
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">📝</div>
+                                <h3>Improve Documentation</h3>
+                            </div>
+                            <p>Help make the project more accessible by improving documentation, adding examples, or creating tutorials.</p>
+                        </div>
+
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">💡</div>
+                                <h3>Suggest Features</h3>
+                            </div>
+                            <p>Share your ideas for new tools or improvements. Your feedback helps prioritize development efforts.</p>
+                        </div>
+
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">🐛</div>
+                                <h3>Report Bugs</h3>
+                            </div>
+                            <p>Help maintain quality by reporting issues you encounter. Detailed bug reports help us fix problems quickly.</p>
+                        </div>
+
+                        <div class="tool-card support-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">📢</div>
+                                <h3>Spread the Word</h3>
+                            </div>
+                            <p>Share .NET Tools with your network, write about it on social media, or mention it in your projects and tutorials.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="project-stats">
-                <h2>Project Statistics</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" id="toolsCount">6</div>
-                        <div class="stat-label">Available Tools</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="versionsCount">5</div>
-                        <div class="stat-label">.NET Versions Covered</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="githubStars">-</div>
-                        <div class="stat-label">GitHub Stars</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Free & Open Source</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -151,6 +236,11 @@
                 <div class="footer-section">
                     <h3>.NET Tools</h3>
                     <p>Making .NET development easier, one tool at a time.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/eladser/.net-tools" target="_blank" class="social-link">
+                            <span>⭐ GitHub</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -174,6 +264,53 @@
     </footer>
 
     <script>
+        // Initialize theme management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme management
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+                
+                // Add smooth transition
+                document.body.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    document.body.style.transition = '';
+                }, 300);
+            });
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Fetch GitHub stats
+            fetchGitHubStats();
+        });
+        
         // Fetch GitHub stats
         async function fetchGitHubStats() {
             try {
@@ -182,10 +319,23 @@
                 document.getElementById('githubStars').textContent = data.stargazers_count || '0';
             } catch (error) {
                 console.log('Could not fetch GitHub stats');
+                document.getElementById('githubStars').textContent = '0';
             }
         }
-        
-        fetchGitHubStats();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
