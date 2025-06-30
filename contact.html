@@ -12,7 +12,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="./index.html">
-                    <span class="logo-icon bounce-animation">🔧</span>
+                    <span class="logo-icon">🔧</span>
                     <span class="logo-text">.NET Tools</span>
                 </a>
             </div>
@@ -313,11 +313,15 @@
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuClose = document.getElementById('mobileMenuClose');
             
-            mobileMenuToggle?.addEventListener('click', () => {
+            mobileMenuToggle?.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 mobileMenu?.classList.toggle('open');
             });
             
-            mobileMenuClose?.addEventListener('click', () => {
+            mobileMenuClose?.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 mobileMenu?.classList.remove('open');
             });
             
@@ -328,6 +332,13 @@
                     !mobileMenuToggle?.contains(e.target)) {
                     mobileMenu.classList.remove('open');
                 }
+            });
+
+            // Prevent navigation link event propagation issues
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
             });
 
             // Scroll animations
