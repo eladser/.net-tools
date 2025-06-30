@@ -283,86 +283,6 @@
     </footer>
 
     <script>
-        // Initialize theme management
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme management
-            const theme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', theme);
-            
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = themeToggle.querySelector('.theme-icon');
-            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-                
-                // Add smooth transition
-                document.body.style.transition = 'all 0.3s ease';
-                setTimeout(() => {
-                    document.body.style.transition = '';
-                }, 300);
-            });
-
-            // Mobile menu functionality
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuClose = document.getElementById('mobileMenuClose');
-            
-            mobileMenuToggle?.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                mobileMenu?.classList.toggle('open');
-            });
-            
-            mobileMenuClose?.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                mobileMenu?.classList.remove('open');
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (mobileMenu?.classList.contains('open') && 
-                    !mobileMenu.contains(e.target) && 
-                    !mobileMenuToggle?.contains(e.target)) {
-                    mobileMenu.classList.remove('open');
-                }
-            });
-
-            // Prevent navigation link event propagation issues
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-            });
-
-            // Scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Fetch GitHub stats
-            fetchGitHubStats();
-        });
-        
         // Fetch GitHub stats
         async function fetchGitHubStats() {
             try {
@@ -375,19 +295,12 @@
             }
         }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Initialize page-specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch GitHub stats
+            fetchGitHubStats();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
