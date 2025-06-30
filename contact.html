@@ -8,14 +8,14 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
 </head>
 <body>
+    <!-- Clean Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="./index.html">
-                    <span class="logo-icon">🔧</span>
-                    <span class="logo-text">.NET Tools</span>
-                </a>
-            </div>
+            <a href="./index.html" class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">.NET Tools</span>
+            </a>
+            
             <ul class="nav-menu">
                 <li><a href="./index.html" class="nav-link">Home</a></li>
                 <li><a href="./index.html#tools" class="nav-link">Tools</a></li>
@@ -28,7 +28,10 @@
                     </button>
                 </li>
             </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                ☰
+            </button>
         </div>
     </nav>
 
@@ -39,20 +42,20 @@
                 <span class="logo-icon">🔧</span>
                 <span class="logo-text">.NET Tools</span>
             </div>
-            <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">✕</button>
         </div>
         <ul class="mobile-nav-links">
             <li><a href="./index.html">Home</a></li>
             <li><a href="./index.html#tools">Tools</a></li>
             <li><a href="./version-comparison.html">Version Comparison</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./contact.html" class="active">Contact</a></li>
             <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub ⭐</a></li>
         </ul>
     </div>
 
     <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title animated-title">Contact & Support</h1>
+            <h1 class="hero-title">Contact & Support</h1>
             <p class="hero-subtitle">Get in touch, contribute to the project, or show your support for .NET Tools</p>
         </div>
         <div class="hero-background">
@@ -174,7 +177,7 @@
                     <h2 class="section-title">Project Statistics</h2>
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-number" id="toolsCount">36</div>
+                            <div class="stat-number" id="toolsCount">20</div>
                             <div class="stat-label">Available Tools</div>
                         </div>
                         <div class="stat-card">
@@ -282,6 +285,7 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         // Fetch GitHub stats
         async function fetchGitHubStats() {
@@ -301,6 +305,5 @@
             fetchGitHubStats();
         });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
