@@ -12,16 +12,16 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">
-                    <span class="logo-icon">🔧</span>
+                <a href="./index.html">
+                    <span class="logo-icon bounce-animation">🔧</span>
                     <span class="logo-text">.NET Tools</span>
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="index.html#tools" class="nav-link">Tools</a></li>
-                <li><a href="version-comparison.html" class="nav-link active">Version Comparison</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./index.html#tools" class="nav-link">Tools</a></li>
+                <li><a href="./version-comparison.html" class="nav-link active">Version Comparison</a></li>
+                <li><a href="./contact.html" class="nav-link">Contact</a></li>
                 <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
                 <li>
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
@@ -29,8 +29,27 @@
                     </button>
                 </li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">.NET Tools</span>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html#tools">Tools</a></li>
+            <li><a href="./version-comparison.html">Version Comparison</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub ⭐</a></li>
+        </ul>
+    </div>
 
     <header class="hero">
         <div class="hero-content">
@@ -118,9 +137,9 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html#tools">Tools</a></li>
-                        <li><a href="version-comparison.html">Version Comparison</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="./index.html#tools">Tools</a></li>
+                        <li><a href="./version-comparison.html">Version Comparison</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
                         <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub</a></li>
                     </ul>
                 </div>
