@@ -1,5 +1,30 @@
-// .NET Version Comparison Data
+// Enhanced .NET Version Comparison Data with Framework versions and .NET 10
+
 const versionData = {
+    netfx45: {
+        name: '.NET Framework 4.5',
+        releaseDate: 'August 2012',
+        support: 'End of Support: January 2016',
+        description: 'Major update with async/await support and significant performance improvements'
+    },
+    netfx472: {
+        name: '.NET Framework 4.7.2',
+        releaseDate: 'April 2018',
+        support: 'Supported (Windows only)',
+        description: 'Latest stable Framework release with .NET Standard 2.0 support'
+    },
+    netfx48: {
+        name: '.NET Framework 4.8',
+        releaseDate: 'April 2019',
+        support: 'Supported (Windows only)',
+        description: 'Final major release of .NET Framework with enhanced performance and security'
+    },
+    netfx481: {
+        name: '.NET Framework 4.8.1',
+        releaseDate: 'August 2022',
+        support: 'Supported (Windows only)',
+        description: 'Latest .NET Framework with accessibility improvements and ARM64 support'
+    },
     net5: {
         name: '.NET 5.0',
         releaseDate: 'November 2020',
@@ -9,7 +34,7 @@ const versionData = {
     net6: {
         name: '.NET 6.0',
         releaseDate: 'November 2021',
-        support: 'LTS - Support until November 2024',
+        support: 'LTS - End of Support: November 2024',
         description: 'Long Term Support release with significant performance improvements'
     },
     net7: {
@@ -29,19 +54,157 @@ const versionData = {
         releaseDate: 'November 2024',
         support: 'Current - Support until May 2026',
         description: 'Latest release with enhanced performance and developer productivity'
+    },
+    net10: {
+        name: '.NET 10.0',
+        releaseDate: 'November 2025 (Preview)',
+        support: 'Preview/RC - Full release November 2025',
+        description: 'Next major release focusing on AI integration and cloud-native development'
     }
 };
 
 const versionComparisons = {
+    'netfx45-netfx472': {
+        title: '.NET Framework 4.5 to 4.7.2',
+        majorChanges: [
+            {
+                title: '.NET Standard 2.0 Support',
+                description: 'Added support for .NET Standard 2.0, enabling better code sharing across platforms.',
+                code: `// .NET Standard 2.0 compatible library
+// Can be used in .NET Framework 4.7.2, .NET Core, and .NET 5+
+public class SharedLibrary
+{
+    public string GetPlatformInfo()
+    {
+        return System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+    }
+}`
+            },
+            {
+                title: 'Improved Cryptography',
+                description: 'Enhanced cryptographic APIs with better security and performance.',
+                code: `// Enhanced cryptography in 4.7.2
+using System.Security.Cryptography;
+
+public static byte[] HashData(byte[] data)
+{
+    using (var sha256 = SHA256.Create())
+    {
+        return sha256.ComputeHash(data);
+    }
+}`
+            },
+            {
+                title: 'Enhanced Garbage Collection',
+                description: 'Improved GC performance and reduced memory pressure in large applications.',
+                code: `// Better GC control in 4.7.2
+GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+GC.Collect();`
+            }
+        ]
+    },
+    'netfx472-netfx48': {
+        title: '.NET Framework 4.7.2 to 4.8',
+        majorChanges: [
+            {
+                title: 'JIT Compiler Improvements',
+                description: 'Significant performance improvements in the Just-In-Time compiler.',
+                code: `// Improved JIT optimizations automatically benefit existing code
+public class PerformanceExample
+{
+    // Method inlining and loop optimizations improved
+    public int CalculateSum(int[] numbers)
+    {
+        int sum = 0;
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            sum += numbers[i]; // Better vectorization in 4.8
+        }
+        return sum;
+    }
+}`
+            },
+            {
+                title: 'Enhanced Security',
+                description: 'Improved security features and TLS 1.3 support.',
+                code: `// TLS 1.3 support in .NET Framework 4.8
+ServicePointManager.SecurityProtocol = 
+    SecurityProtocolType.Tls13 | SecurityProtocolType.Tls12;`
+            },
+            {
+                title: 'Windows Forms Improvements',
+                description: 'Enhanced high DPI support and accessibility features.',
+                code: `// High DPI awareness in Windows Forms 4.8
+[assembly: System.Windows.Forms.Application.EnableVisualStyles()]
+[assembly: System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false)]
+[assembly: System.Windows.Forms.Application.SetHighDpiMode(HighDpiMode.SystemAware)]`
+            }
+        ]
+    },
+    'netfx48-net5': {
+        title: '.NET Framework 4.8 to .NET 5.0',
+        majorChanges: [
+            {
+                title: 'Cross-Platform Support',
+                description: 'Major shift from Windows-only to cross-platform development.',
+                code: `// Cross-platform detection in .NET 5
+using System.Runtime.InteropServices;
+
+public static string GetPlatformInfo()
+{
+    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        return "Running on Windows";
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        return "Running on Linux";
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        return "Running on macOS";
+    else
+        return "Unknown platform";
+}`
+            },
+            {
+                title: 'Unified BCL',
+                description: 'Single Base Class Library across all .NET implementations.',
+                code: `// Same APIs work across all platforms in .NET 5
+using System.Text.Json;
+
+public class UnifiedExample
+{
+    public string SerializeObject<T>(T obj)
+    {
+        // Works on Windows, Linux, macOS, containers
+        return JsonSerializer.Serialize(obj);
+    }
+}`
+            },
+            {
+                title: 'Performance Improvements',
+                description: 'Significant performance gains across the board.',
+                code: `// Performance improvements are automatic
+// JSON serialization is ~2x faster
+// String operations improved
+// Memory allocation reduced
+
+Span<int> numbers = stackalloc int[100]; // Stack allocation
+ReadOnlySpan<char> text = "Hello".AsSpan(); // Zero-copy string operations`
+            }
+        ]
+    },
     'net5-net6': {
         title: '.NET 5.0 to .NET 6.0',
         majorChanges: [
             {
                 title: 'Hot Reload',
-                description: 'Edit your code while your application is running and see changes applied immediately without restarting.',
+                description: 'Edit your code while your application is running and see changes applied immediately.',
                 code: `// No code changes needed - IDE feature
 // Works with Visual Studio, VS Code, and CLI
-dotnet watch run --hot-reload`
+dotnet watch run --hot-reload
+
+// Supports changes to:
+// - Method bodies
+// - Adding new methods
+// - Adding new types
+// - Lambda expressions`
             },
             {
                 title: 'Minimal APIs',
@@ -51,9 +214,12 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/users/{id}", (int id) => new { Id = id, Name = "User" + id });
+app.MapGet("/users/{id:int}", (int id) => new { Id = id, Name = $"User {id}" });
+app.MapPost("/users", (User user) => Results.Created($"/users/{user.Id}", user));
 
-app.Run();`
+app.Run();
+
+record User(int Id, string Name, string Email);`
             },
             {
                 title: 'Global Using Directives',
@@ -62,7 +228,9 @@ app.Run();`
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;
+global using System.Threading.Tasks;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
 
 // Now available in all files without explicit using statements`
             },
@@ -74,7 +242,11 @@ namespace MyApp.Services;
 
 public class UserService
 {
-    public User GetUser(int id) => new User { Id = id };
+    public async Task<User> GetUserAsync(int id)
+    {
+        // Implementation
+        return new User { Id = id };
+    }
 }
 
 // Instead of:
@@ -82,17 +254,6 @@ public class UserService
 // {
 //     public class UserService { ... }
 // }`
-            },
-            {
-                title: 'Performance Improvements',
-                description: 'Significant performance improvements in JSON serialization, reflection, and overall runtime.',
-                code: `// JSON performance improvement example
-using System.Text.Json;
-
-// .NET 6 is ~30% faster for JSON operations
-var person = new Person { Name = "John", Age = 30 };
-var json = JsonSerializer.Serialize(person);
-var deserializedPerson = JsonSerializer.Deserialize<Person>(json);`
             }
         ]
     },
@@ -103,9 +264,16 @@ var deserializedPerson = JsonSerializer.Deserialize<Person>(json);`
                 title: 'Generic Math Support',
                 description: 'Static abstract members in interfaces enable generic math operations.',
                 code: `// Generic math operations
+using System.Numerics;
+
 public static T Add<T>(T left, T right) where T : INumber<T>
 {
     return left + right;
+}
+
+public static T[] AddArrays<T>(T[] left, T[] right) where T : INumber<T>
+{
+    return left.Zip(right, Add).ToArray();
 }
 
 // Usage
@@ -133,8 +301,11 @@ string sql = """
     FROM Users u
     INNER JOIN Posts p ON u.Id = p.UserId
     WHERE u.IsActive = 1
+        AND p.CreatedDate > @startDate
+    ORDER BY p.CreatedDate DESC
     """;
-`
+
+string regex = """\\d{4}-\\d{2}-\\d{2}"""; // No double escaping!`
             },
             {
                 title: 'Required Members',
@@ -145,25 +316,32 @@ public class Person
     public required string Name { get; init; }
     public required string Email { get; init; }
     public int Age { get; set; }
+    public string? PhoneNumber { get; set; }
 }
 
 // Compiler ensures required properties are set
 var person = new Person 
 { 
     Name = "John",  // Required
-    Email = "john@example.com"  // Required
-    // Age is optional
+    Email = "john@example.com",  // Required
+    Age = 30  // Optional
+    // PhoneNumber is optional
 };`
             },
             {
-                title: 'Performance Improvements',
-                description: 'Enhanced performance in regex, collections, and system types.',
-                code: `// Improved regex performance with source generators
-[GeneratedRegex(@"\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b")]
-public static partial Regex EmailRegex();
-
-// Usage - much faster than Regex.IsMatch
-bool isValid = EmailRegex().IsMatch("user@example.com");`
+                title: 'List Patterns',
+                description: 'Pattern matching on arrays and lists with elegant syntax.',
+                code: `// List patterns in switch expressions
+public static string DescribeArray(int[] array) => array switch
+{
+    [] => "Empty array",
+    [var x] => $"Single element: {x}",
+    [var x, var y] => $"Two elements: {x}, {y}",
+    [var first, .., var last] => $"First: {first}, Last: {last}",
+    [1, 2, 3] => "Exactly 1, 2, 3",
+    [1, .. var rest] => $"Starts with 1, rest: [{string.Join(", ", rest)}]",
+    _ => "Other pattern"
+};`
             }
         ]
     },
@@ -174,16 +352,18 @@ bool isValid = EmailRegex().IsMatch("user@example.com");`
                 title: 'Primary Constructors',
                 description: 'Simplified constructor syntax for classes and structs.',
                 code: `// Primary constructors in .NET 8
-public class Person(string name, int age)
+public class Person(string firstName, string lastName, int age)
 {
-    public string Name { get; } = name;
-    public int Age { get; set; } = age;
+    public string FullName => $"{firstName} {lastName}";
+    public bool IsAdult => age >= 18;
     
-    public void Introduce() => Console.WriteLine($"Hi, I'm {name} and I'm {age} years old.");
+    public void Introduce() => 
+        Console.WriteLine($"Hi, I'm {firstName} {lastName} and I'm {age} years old.");
 }
 
 // Usage
-var person = new Person("John", 30);`
+var person = new Person("John", "Doe", 30);
+person.Introduce(); // Hi, I'm John Doe and I'm 30 years old.`
             },
             {
                 title: 'Native AOT Publishing',
@@ -198,47 +378,57 @@ dotnet publish -c Release -r win-x64
 
 // Results in:
 // - Faster startup (up to 4x)
-// - Smaller memory footprint
-// - Self-contained executable`
-            },
-            {
-                title: 'Blazor Streaming Rendering',
-                description: 'Stream UI updates to improve perceived performance in Blazor Server apps.',
-                code: `@* Blazor streaming rendering *@
-<div>
-    <h1>User Profile</h1>
-    @* This renders immediately *@
-    <p>Loading user data...</p>
-    
-    @* This streams in when data is available *@
-    <Streaming>
-        @await LoadUserDataAsync()
-    </Streaming>
-</div>
+// - Smaller memory footprint (up to 4x less)
+// - Self-contained executable
+// - No runtime dependency
 
-@code {
-    private async Task<RenderFragment> LoadUserDataAsync()
-    {
-        var user = await UserService.GetUserAsync(UserId);
-        return @<div><p>Welcome, @user.Name!</p></div>;
-    }
-}`
-            },
-            {
-                title: 'Source Generators Improvements',
-                description: 'Enhanced source generators for better compile-time code generation.',
-                code: `// JSON source generator improvements
+// AOT-compatible code
 [JsonSerializable(typeof(Person))]
-[JsonSerializable(typeof(List<Person>))]
-public partial class PersonContext : JsonSerializerContext { }
+public partial class PersonContext : JsonSerializerContext { }`
+            },
+            {
+                title: 'Frozen Collections',
+                description: 'Immutable collections optimized for read-heavy scenarios.',
+                code: `// Frozen collections for better performance
+using System.Collections.Frozen;
 
-// Usage with better performance
-var options = new JsonSerializerOptions
+// Create frozen collections for read-heavy scenarios
+var frozenDict = new Dictionary<string, int>
 {
-    TypeInfoResolver = PersonContext.Default
-};
+    ["apple"] = 5,
+    ["banana"] = 3,
+    ["orange"] = 8
+}.ToFrozenDictionary();
 
-string json = JsonSerializer.Serialize(person, options);`
+var frozenSet = new[] { "red", "green", "blue" }.ToFrozenSet();
+
+// Much faster lookups than regular Dictionary/HashSet
+// Optimized internal structure for minimal memory and maximum speed
+var appleCount = frozenDict["apple"]; // Very fast lookup`
+            },
+            {
+                title: 'Time Abstraction',
+                description: 'New TimeProvider abstraction for better testability of time-dependent code.',
+                code: `// Time abstraction for better testing
+public class OrderService(TimeProvider timeProvider)
+{
+    public Order CreateOrder(Product product)
+    {
+        return new Order
+        {
+            Id = Guid.NewGuid(),
+            Product = product,
+            CreatedAt = timeProvider.GetUtcNow(), // Testable!
+            ExpiresAt = timeProvider.GetUtcNow().AddDays(30)
+        };
+    }
+}
+
+// In tests
+var fakeTime = new FakeTimeProvider(new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero));
+var service = new OrderService(fakeTime);
+var order = service.CreateOrder(product);
+// order.CreatedAt will always be 2024-01-01`
             }
         ]
     },
@@ -255,56 +445,168 @@ public void ProcessItems(params IEnumerable<string> items)
         Console.WriteLine(item);
 }
 
+public void ProcessNumbers(params ReadOnlySpan<int> numbers)
+{
+    foreach (var num in numbers)
+        Console.WriteLine(num);
+}
+
 // Can be called with:
 ProcessItems("a", "b", "c");  // params array
 ProcessItems(list);           // List<string>
-ProcessItems(hashSet);        // HashSet<string>`
+ProcessItems(hashSet);        // HashSet<string>
+ProcessNumbers(1, 2, 3, 4);   // Span allocation`
             },
             {
-                title: 'Escape Sequences in Raw Strings',
-                description: 'Enhanced raw string literals with escape sequence support.',
-                code: `// .NET 9 - Escape sequences in raw strings
-string path = """C:\\Users\\John\\Documents\\file.txt""";
-string json = """
-    {
-        "message": "Hello\nWorld",
-        "path": "C:\\\\temp"
-    }
-    """;
-
-// No more double escaping needed`
-            },
-            {
-                title: 'LINQ Performance Improvements',
-                description: 'Significant performance improvements in LINQ operations.',
-                code: `// .NET 9 - Improved LINQ performance
-var numbers = Enumerable.Range(1, 1000000);
-
-// Up to 30% faster in .NET 9
-var evenNumbers = numbers
-    .Where(x => x % 2 == 0)
-    .Select(x => x * 2)
-    .ToList();
-
-// New LINQ methods
-var result = numbers.CountBy(x => x % 10);  // Count by key
-var aggregated = numbers.AggregateBy(x => x % 10, 0, (acc, x) => acc + x);`
-            },
-            {
-                title: 'System.Text.Json Improvements',
-                description: 'Enhanced JSON serialization with better performance and features.',
-                code: `// .NET 9 - Enhanced JSON features
-public class Config
+                title: 'Partial Properties',
+                description: 'Split property declarations across multiple files like partial methods.',
+                code: `// File1.cs - Property declaration
+public partial class User
 {
-    [JsonPropertyName("api_key")]
-    public required string ApiKey { get; init; }
-    
-    // Better handling of nullable reference types
-    public string? OptionalValue { get; set; }
+    public partial string Name { get; set; }
 }
 
-// Improved serialization performance (up to 20% faster)
-var config = JsonSerializer.Deserialize<Config>(jsonString);`
+// File2.cs - Property implementation (generated code)
+public partial class User
+{
+    private string _name = "";
+    
+    public partial string Name 
+    { 
+        get => _name;
+        set => _name = value?.Trim() ?? "";
+    }
+}`
+            },
+            {
+                title: 'Enhanced LINQ',
+                description: 'New LINQ methods for better performance and functionality.',
+                code: `// .NET 9 - New LINQ methods
+var numbers = Enumerable.Range(1, 1000000);
+
+// CountBy - count elements by a key
+var digitCounts = numbers.CountBy(x => x.ToString().Length);
+// { 1: 9, 2: 90, 3: 900, 4: 90000, 5: 900000, 6: 9000, 7: 1 }
+
+// AggregateBy - aggregate by key in one pass
+var sumsByModulo = numbers.AggregateBy(
+    x => x % 10,        // key selector
+    0,                  // seed
+    (acc, x) => acc + x // aggregator
+);
+
+// Index - get indices along with values
+var indexedItems = items.Index().Where(x => x.Index % 2 == 0);`
+            },
+            {
+                title: 'Enhanced Collection Expressions',
+                description: 'More intuitive syntax for creating and working with collections.',
+                code: `// Collection expressions improvements
+int[] numbers = [1, 2, 3, 4, 5];
+List<string> names = ["Alice", "Bob", "Charlie"];
+
+// Spread operator
+int[] moreNumbers = [..numbers, 6, 7, 8];
+string[] allNames = [..names, "David", "Eve"];
+
+// Dictionary expressions
+Dictionary<string, int> ages = new()
+{
+    ["Alice"] = 25,
+    ["Bob"] = 30,
+    ["Charlie"] = 35
+};`
+            }
+        ]
+    },
+    'net9-net10': {
+        title: '.NET 9.0 to .NET 10.0 (Preview)',
+        majorChanges: [
+            {
+                title: 'AI Integration',
+                description: 'Built-in support for AI and machine learning workloads.',
+                code: `// Built-in AI capabilities (Preview)
+using Microsoft.AI;
+
+public class SmartService
+{
+    public async Task<string> GenerateResponseAsync(string prompt)
+    {
+        // Built-in AI inference
+        var aiModel = AI.CreateLanguageModel("gpt-4");
+        return await aiModel.GenerateTextAsync(prompt);
+    }
+    
+    public async Task<Classification> ClassifyImageAsync(byte[] imageData)
+    {
+        var visionModel = AI.CreateVisionModel("vision-v1");
+        return await visionModel.ClassifyAsync(imageData);
+    }
+}`
+            },
+            {
+                title: 'Enhanced Cloud Native',
+                description: 'Improved support for cloud-native development and deployment.',
+                code: `// Enhanced cloud-native features
+[CloudNative]
+public class WeatherService
+{
+    [AutoScale(min: 1, max: 100)]
+    [HealthCheck("/health")]
+    public async Task<Weather> GetWeatherAsync(string city)
+    {
+        // Automatic scaling based on load
+        // Built-in health checks
+        // Enhanced observability
+        return await WeatherAPI.GetAsync(city);
+    }
+}`
+            },
+            {
+                title: 'Compile-time Reflection',
+                description: 'Zero-overhead reflection through compile-time generation.',
+                code: `// Compile-time reflection (Source Generators)
+[GenerateReflection]
+public partial class User
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+// Generated at compile time
+public partial class User
+{
+    public static PropertyInfo[] GetProperties() => 
+        _generatedProperties; // Pre-computed at compile time
+        
+    public static T GetPropertyValue<T>(object instance, string propertyName) =>
+        // Zero-allocation, compile-time optimized
+        _propertyAccessors[propertyName](instance);
+}`
+            },
+            {
+                title: 'Enhanced Pattern Matching',
+                description: 'More powerful pattern matching capabilities.',
+                code: `// Enhanced pattern matching in .NET 10
+public string ProcessValue(object value) => value switch
+{
+    // Enhanced range patterns
+    int n when n in 1..10 => "Single digit",
+    int n when n in 10..100 => "Double digit",
+    
+    // Enhanced object patterns
+    Person { Age: var age, Name: var name } when age > 18 
+        => $"Adult: {name}",
+    
+    // Enhanced collection patterns
+    string[] { Length: > 0 } arr when arr.All(s => s.Length > 5) 
+        => "All long strings",
+    
+    // Pattern combinators
+    (int x, int y) when x > 0 and y > 0 => "Both positive",
+    
+    _ => "Unknown pattern"
+};`
             }
         ]
     }
@@ -312,14 +614,41 @@ var config = JsonSerializer.Deserialize<Config>(jsonString);`
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
+    // Update version selectors with new options
+    updateVersionSelectors();
     // Set default values and compare
     compareVersions();
 });
 
+function updateVersionSelectors() {
+    const fromSelect = document.getElementById('fromVersion');
+    const toSelect = document.getElementById('toVersion');
+    
+    if (!fromSelect || !toSelect) return;
+    
+    // Clear existing options
+    fromSelect.innerHTML = '';
+    toSelect.innerHTML = '';
+    
+    // Add all versions
+    Object.entries(versionData).forEach(([key, data]) => {
+        const option1 = new Option(data.name, key);
+        const option2 = new Option(data.name, key);
+        fromSelect.appendChild(option1);
+        toSelect.appendChild(option2);
+    });
+    
+    // Set default selections
+    fromSelect.value = 'net5';
+    toSelect.value = 'net6';
+}
+
 function compareVersions() {
-    const fromVersion = document.getElementById('fromVersion').value;
-    const toVersion = document.getElementById('toVersion').value;
+    const fromVersion = document.getElementById('fromVersion')?.value;
+    const toVersion = document.getElementById('toVersion')?.value;
     const resultsDiv = document.getElementById('comparisonResults');
+    
+    if (!fromVersion || !toVersion || !resultsDiv) return;
     
     if (fromVersion === toVersion) {
         resultsDiv.innerHTML = `
@@ -345,7 +674,6 @@ function compareVersions() {
     }
     
     if (!comparison) {
-        // Handle multi-version jumps
         comparison = getMultiVersionComparison(fromVersion, toVersion);
     }
     
@@ -357,7 +685,8 @@ function compareVersions() {
             <div class="version-comparison">
                 <div class="comparison-header">
                     <h2>Comparison Not Available</h2>
-                    <p>Comparison between ${fromVersionData.name} and ${toVersionData.name} is not yet available.</p>
+                    <p>Direct comparison between ${fromVersionData.name} and ${toVersionData.name} is not yet available.</p>
+                    <p>Consider comparing intermediate versions or check back for updates.</p>
                 </div>
             </div>
         `;
@@ -418,8 +747,8 @@ function compareVersions() {
 }
 
 function getMultiVersionComparison(fromVersion, toVersion) {
-    // For now, return null for multi-version jumps
-    // This could be enhanced to combine multiple comparisons
+    // For complex version jumps, we could combine multiple comparisons
+    // For now, return null to show "not available" message
     return null;
 }
 
@@ -430,5 +759,13 @@ function escapeHtml(text) {
 }
 
 // Add event listeners to dropdowns
-document.getElementById('fromVersion').addEventListener('change', compareVersions);
-document.getElementById('toVersion').addEventListener('change', compareVersions);
+const fromVersionSelect = document.getElementById('fromVersion');
+const toVersionSelect = document.getElementById('toVersion');
+
+if (fromVersionSelect) {
+    fromVersionSelect.addEventListener('change', compareVersions);
+}
+
+if (toVersionSelect) {
+    toVersionSelect.addEventListener('change', compareVersions);
+}
