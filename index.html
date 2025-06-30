@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-icon">🔧</span>
+                <span class="logo-icon bounce-animation">🔧</span>
                 <span class="logo-text">.NET Tools</span>
             </div>
             <ul class="nav-menu">
@@ -35,10 +35,10 @@
     <header id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title animated-title">Welcome to .NET Tools</h1>
-            <p class="hero-subtitle">Your comprehensive toolkit for .NET development with advanced code generators, smart converters, and productivity enhancers</p>
+            <p class="hero-subtitle fade-in-delay">Your comprehensive toolkit for .NET development with advanced code generators, smart converters, and productivity enhancers</p>
             <div class="hero-buttons">
                 <a href="#tools" class="btn btn-primary pulse-animation">Explore Tools</a>
-                <a href="https://github.com/eladser/.net-tools" class="btn btn-secondary" target="_blank">View on GitHub</a>
+                <a href="https://github.com/eladser/.net-tools" class="btn btn-secondary glow-animation" target="_blank">View on GitHub</a>
             </div>
         </div>
         <div class="hero-background">
@@ -48,6 +48,9 @@
                 <div class="floating-element">🚀</div>
                 <div class="floating-element">🔧</div>
                 <div class="floating-element">⭐</div>
+                <div class="floating-element">🎯</div>
+                <div class="floating-element">🔐</div>
+                <div class="floating-element">📊</div>
             </div>
         </div>
     </header>
@@ -55,8 +58,8 @@
     <main>
         <section id="tools" class="tools-section">
             <div class="container">
-                <h2 class="section-title">Professional .NET Development Tools</h2>
-                <p class="section-subtitle">Carefully curated collection of essential tools for modern .NET development</p>
+                <h2 class="section-title slide-in-animation">Professional .NET Development Tools</h2>
+                <p class="section-subtitle fade-in-delay">Carefully curated collection of essential tools for modern .NET development</p>
                 
                 <div class="tools-tabs">
                     <div class="tab-buttons">
@@ -64,9 +67,13 @@
                             <span class="tab-icon">🎯</span>
                             Code Generators
                         </button>
-                        <button class="tab-button" data-tab="converters">
+                        <button class="tab-button" data-tab="csharp-conversions">
                             <span class="tab-icon">🔄</span>
-                            Converters
+                            C# Conversions
+                        </button>
+                        <button class="tab-button" data-tab="converters">
+                            <span class="tab-icon">🔢</span>
+                            Data Converters
                         </button>
                         <button class="tab-button" data-tab="text-tools">
                             <span class="tab-icon">📝</span>
@@ -86,7 +93,7 @@
                         <!-- Code Generators Tab -->
                         <div class="tab-panel active" id="code-generators">
                             <div class="tools-grid">
-                                <div class="tool-card featured">
+                                <div class="tool-card featured animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔄</div>
                                         <div>
@@ -111,7 +118,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🏗️</div>
                                         <div>
@@ -140,7 +147,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔗</div>
                                         <div>
@@ -176,7 +183,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎯</div>
                                         <div>
@@ -210,10 +217,156 @@
                             </div>
                         </div>
 
-                        <!-- Converters Tab -->
+                        <!-- C# Conversions Tab -->
+                        <div class="tab-panel" id="csharp-conversions">
+                            <div class="tools-grid">
+                                <div class="tool-card featured animate-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔄</div>
+                                        <div>
+                                            <h3>C# Type Converter</h3>
+                                            <span class="tool-badge">New</span>
+                                        </div>
+                                    </div>
+                                    <p>Generate C# code to convert between different data types with proper error handling and validation.</p>
+                                    <div class="tool-content">
+                                        <div class="converter-form">
+                                            <div class="form-row">
+                                                <label>From Type:
+                                                    <select id="fromType">
+                                                        <option value="string">string</option>
+                                                        <option value="int">int</option>
+                                                        <option value="double">double</option>
+                                                        <option value="decimal">decimal</option>
+                                                        <option value="bool">bool</option>
+                                                        <option value="DateTime">DateTime</option>
+                                                        <option value="Guid">Guid</option>
+                                                        <option value="enum">enum</option>
+                                                        <option value="object">object</option>
+                                                    </select>
+                                                </label>
+                                                <label>To Type:
+                                                    <select id="toType">
+                                                        <option value="int">int</option>
+                                                        <option value="string">string</option>
+                                                        <option value="double">double</option>
+                                                        <option value="decimal">decimal</option>
+                                                        <option value="bool">bool</option>
+                                                        <option value="DateTime">DateTime</option>
+                                                        <option value="Guid">Guid</option>
+                                                        <option value="enum">enum</option>
+                                                        <option value="object">object</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="generator-options">
+                                                <label><input type="checkbox" id="includeNullHandling" checked> Include Null Handling</label>
+                                                <label><input type="checkbox" id="includeErrorHandling" checked> Include Error Handling</label>
+                                                <label><input type="checkbox" id="includeValidation"> Include Validation</label>
+                                                <label><input type="checkbox" id="useExtensionMethod"> Generate Extension Method</label>
+                                            </div>
+                                        </div>
+                                        <button onclick="generateTypeConversion()" class="btn btn-primary">Generate Conversion Code</button>
+                                        <pre id="typeConversionOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card animate-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">📋</div>
+                                        <div>
+                                            <h3>LINQ Query Builder</h3>
+                                            <span class="tool-badge">New</span>
+                                        </div>
+                                    </div>
+                                    <p>Build complex LINQ queries with Method and Query syntax examples.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Collection Type:</label>
+                                            <input type="text" id="collectionType" placeholder="e.g., List<User>, IEnumerable<Product>" value="List<User>">
+                                        </div>
+                                        <div class="generator-options">
+                                            <label><input type="checkbox" id="includeWhere"> Where (Filter)</label>
+                                            <label><input type="checkbox" id="includeSelect"> Select (Projection)</label>
+                                            <label><input type="checkbox" id="includeOrderBy"> OrderBy</label>
+                                            <label><input type="checkbox" id="includeGroupBy"> GroupBy</label>
+                                            <label><input type="checkbox" id="includeJoin"> Join</label>
+                                            <label><input type="checkbox" id="includeAggregate"> Aggregate (Count, Sum, etc.)</label>
+                                        </div>
+                                        <button onclick="generateLinqQuery()" class="btn btn-primary">Generate LINQ Queries</button>
+                                        <pre id="linqOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card animate-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔧</div>
+                                        <div>
+                                            <h3>Extension Method Generator</h3>
+                                            <span class="tool-badge">New</span>
+                                        </div>
+                                    </div>
+                                    <p>Generate C# extension methods for common operations and custom functionality.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Target Type:</label>
+                                            <input type="text" id="targetType" placeholder="e.g., string, int, List<T>" value="string">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Method Name:</label>
+                                            <input type="text" id="methodName" placeholder="e.g., IsNullOrEmpty, ToTitleCase" value="IsNullOrEmpty">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Return Type:</label>
+                                            <input type="text" id="returnType" placeholder="e.g., bool, string, int" value="bool">
+                                        </div>
+                                        <div class="generator-options">
+                                            <label><input type="checkbox" id="includeXmlDoc" checked> Include XML Documentation</label>
+                                            <label><input type="checkbox" id="includeUnitTest"> Generate Unit Test</label>
+                                        </div>
+                                        <button onclick="generateExtensionMethod()" class="btn btn-primary">Generate Extension Method</button>
+                                        <pre id="extensionMethodOutput" class="output"></pre>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card animate-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">⚡</div>
+                                        <div>
+                                            <h3>Async/Await Pattern Generator</h3>
+                                            <span class="tool-badge">New</span>
+                                        </div>
+                                    </div>
+                                    <p>Generate async/await patterns for common operations like HTTP calls, database operations, and file I/O.</p>
+                                    <div class="tool-content">
+                                        <div class="generator-options">
+                                            <label>Operation Type:
+                                                <select id="asyncOperationType">
+                                                    <option value="http">HTTP Client</option>
+                                                    <option value="database">Database Query</option>
+                                                    <option value="file">File Operations</option>
+                                                    <option value="custom">Custom Async Method</option>
+                                                </select>
+                                            </label>
+                                            <label><input type="checkbox" id="includeErrorHandling" checked> Include Error Handling</label>
+                                            <label><input type="checkbox" id="includeCancellation"> Include Cancellation Token</label>
+                                            <label><input type="checkbox" id="includeTimeout"> Include Timeout</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Method Name:</label>
+                                            <input type="text" id="asyncMethodName" placeholder="e.g., GetUserAsync, SaveDataAsync" value="GetDataAsync">
+                                        </div>
+                                        <button onclick="generateAsyncPattern()" class="btn btn-primary">Generate Async Pattern</button>
+                                        <pre id="asyncPatternOutput" class="output"></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Converters Tab -->
                         <div class="tab-panel" id="converters">
                             <div class="tools-grid">
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔤</div>
                                         <div>
@@ -250,7 +403,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">⏱️</div>
                                         <div>
@@ -294,7 +447,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔢</div>
                                         <div>
@@ -328,7 +481,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎨</div>
                                         <div>
@@ -369,7 +522,7 @@
                         <!-- Text & Format Tab -->
                         <div class="tab-panel" id="text-tools">
                             <div class="tools-grid">
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">📊</div>
                                         <div>
@@ -387,7 +540,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎭</div>
                                         <div>
@@ -412,7 +565,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔀</div>
                                         <div>
@@ -434,7 +587,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">✨</div>
                                         <div>
@@ -466,7 +619,7 @@
                         <!-- Security Tab -->
                         <div class="tab-panel" id="security">
                             <div class="tools-grid">
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔐</div>
                                         <div>
@@ -495,7 +648,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔗</div>
                                         <div>
@@ -517,7 +670,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎫</div>
                                         <div>
@@ -534,7 +687,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">📱</div>
                                         <div>
@@ -574,7 +727,7 @@
                         <!-- Utilities Tab -->
                         <div class="tab-panel" id="utilities">
                             <div class="tools-grid">
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">📏</div>
                                         <div>
@@ -607,7 +760,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">📅</div>
                                         <div>
@@ -634,7 +787,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎲</div>
                                         <div>
@@ -661,7 +814,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card">
+                                <div class="tool-card animate-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">📐</div>
                                         <div>
