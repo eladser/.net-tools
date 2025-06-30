@@ -1,1 +1,1 @@
-// Append the missing functions from script-utils.js to the end of script.js
+// Complete script.js with all functionality - restored from sha c7b4891c4
