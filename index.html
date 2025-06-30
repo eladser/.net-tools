@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Tools - Your Complete .NET Development Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">.NET Tools</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="version-comparison.html" class="nav-link">Version Comparison</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to .NET Tools</h1>
+            <p class="hero-subtitle">Your comprehensive toolkit for .NET development, version comparisons, and productivity enhancement</p>
+            <div class="hero-buttons">
+                <a href="#tools" class="btn btn-primary">Explore Tools</a>
+                <a href="https://github.com/eladser/.net-tools" class="btn btn-secondary" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Useful .NET Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🔄</div>
+                        <h3>JSON to C# Converter</h3>
+                        <p>Convert JSON strings to C# classes instantly with proper naming conventions and data types.</p>
+                        <div class="tool-content">
+                            <textarea id="jsonInput" placeholder="Paste your JSON here...">{
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com",
+  "isActive": true,
+  "tags": ["developer", "csharp"]
+}</textarea>
+                            <button onclick="convertJsonToCsharp()" class="btn btn-primary">Convert to C#</button>
+                            <pre id="csharpOutput" class="output"></pre>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔤</div>
+                        <h3>String Case Converter</h3>
+                        <p>Convert strings between different naming conventions used in .NET development.</p>
+                        <div class="tool-content">
+                            <input type="text" id="stringInput" placeholder="Enter your string..." value="hello world example">
+                            <div class="conversion-results">
+                                <div class="result-item">
+                                    <label>PascalCase:</label>
+                                    <span id="pascalCase"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>camelCase:</label>
+                                    <span id="camelCase"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>snake_case:</label>
+                                    <span id="snakeCase"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>kebab-case:</label>
+                                    <span id="kebabCase"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🎯</div>
+                        <h3>GUID Generator</h3>
+                        <p>Generate GUIDs in various formats commonly used in .NET applications.</p>
+                        <div class="tool-content">
+                            <button onclick="generateGuid()" class="btn btn-primary">Generate New GUID</button>
+                            <div class="guid-results">
+                                <div class="result-item">
+                                    <label>Standard:</label>
+                                    <span id="guidStandard" class="selectable"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>No Hyphens:</label>
+                                    <span id="guidNoHyphens" class="selectable"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>Uppercase:</label>
+                                    <span id="guidUppercase" class="selectable"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>C# new Guid():</label>
+                                    <span id="guidCsharp" class="selectable"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔍</div>
+                        <h3>Regex Tester</h3>
+                        <p>Test and validate regular expressions with real-time matching and explanations.</p>
+                        <div class="tool-content">
+                            <input type="text" id="regexPattern" placeholder="Enter regex pattern..." value="\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b">
+                            <textarea id="regexTestString" placeholder="Enter test string...">john.doe@example.com
+test@domain.co.uk
+invalid-email</textarea>
+                            <button onclick="testRegex()" class="btn btn-primary">Test Regex</button>
+                            <div id="regexResults" class="regex-results"></div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔐</div>
+                        <h3>Password Generator</h3>
+                        <p>Generate secure passwords with customizable options for .NET applications.</p>
+                        <div class="tool-content">
+                            <div class="password-options">
+                                <label><input type="checkbox" id="includeUppercase" checked> Uppercase</label>
+                                <label><input type="checkbox" id="includeLowercase" checked> Lowercase</label>
+                                <label><input type="checkbox" id="includeNumbers" checked> Numbers</label>
+                                <label><input type="checkbox" id="includeSymbols"> Symbols</label>
+                                <label>Length: <input type="number" id="passwordLength" value="16" min="4" max="50"></label>
+                            </div>
+                            <button onclick="generatePassword()" class="btn btn-primary">Generate Password</button>
+                            <div class="result-item">
+                                <label>Generated Password:</label>
+                                <span id="generatedPassword" class="selectable"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">⏱️</div>
+                        <h3>Unix Timestamp Converter</h3>
+                        <p>Convert between Unix timestamps and DateTime formats used in .NET.</p>
+                        <div class="tool-content">
+                            <input type="number" id="unixTimestamp" placeholder="Enter Unix timestamp..." value="1640995200">
+                            <button onclick="convertTimestamp()" class="btn btn-primary">Convert</button>
+                            <div class="timestamp-results">
+                                <div class="result-item">
+                                    <label>DateTime:</label>
+                                    <span id="dateTimeResult"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>ISO 8601:</label>
+                                    <span id="isoResult"></span>
+                                </div>
+                                <div class="result-item">
+                                    <label>C# Code:</label>
+                                    <span id="csharpDateCode" class="selectable"></span>
+                                </div>
+                            </div>
+                            <button onclick="useCurrentTime()" class="btn btn-secondary">Use Current Time</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Why Choose .NET Tools?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast & Efficient</h3>
+                        <p>All tools run in your browser - no server requests needed for instant results.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Privacy First</h3>
+                        <p>Your data never leaves your browser. Everything is processed locally.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Use these tools on any device - desktop, tablet, or mobile.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Developer Focused</h3>
+                        <p>Built by developers for developers with real-world use cases in mind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>.NET Tools</h3>
+                    <p>Making .NET development easier, one tool at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="version-comparison.html">Version Comparison</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p>If you find this project helpful, please consider starring it on GitHub!</p>
+                    <a href="https://github.com/eladser/.net-tools" class="btn btn-outline" target="_blank">⭐ Star on GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 .NET Tools. Open source project by <a href="https://github.com/eladser" target="_blank">eladser</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
