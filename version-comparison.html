@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Version Comparison - .NET Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span class="logo-icon">🔧</span>
+                    <span class="logo-text">.NET Tools</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#tools" class="nav-link">Tools</a></li>
+                <li><a href="version-comparison.html" class="nav-link active">Version Comparison</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>.NET Version Comparison</h1>
+            <p>Compare different versions of .NET and discover what's new with detailed explanations and code examples</p>
+        </div>
+    </header>
+
+    <main class="comparison-main">
+        <div class="container">
+            <div class="version-selector">
+                <h2>Select .NET Versions to Compare</h2>
+                <div class="selector-grid">
+                    <div class="version-select">
+                        <label for="fromVersion">From Version:</label>
+                        <select id="fromVersion">
+                            <option value="net5">.NET 5.0</option>
+                            <option value="net6">.NET 6.0</option>
+                            <option value="net7">.NET 7.0</option>
+                            <option value="net8">.NET 8.0</option>
+                            <option value="net9">.NET 9.0</option>
+                        </select>
+                    </div>
+                    <div class="version-select">
+                        <label for="toVersion">To Version:</label>
+                        <select id="toVersion">
+                            <option value="net5">.NET 5.0</option>
+                            <option value="net6" selected>.NET 6.0</option>
+                            <option value="net7">.NET 7.0</option>
+                            <option value="net8">.NET 8.0</option>
+                            <option value="net9">.NET 9.0</option>
+                        </select>
+                    </div>
+                    <button onclick="compareVersions()" class="btn btn-primary">Compare Versions</button>
+                </div>
+            </div>
+
+            <div id="comparisonResults" class="comparison-results">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>.NET Tools</h3>
+                    <p>Making .NET development easier, one tool at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="version-comparison.html">Version Comparison</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p>If you find this project helpful, please consider starring it on GitHub!</p>
+                    <a href="https://github.com/eladser/.net-tools" class="btn btn-outline" target="_blank">⭐ Star on GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 .NET Tools. Open source project by <a href="https://github.com/eladser" target="_blank">eladser</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="version-comparison.js"></script>
+</body>
+</html>
