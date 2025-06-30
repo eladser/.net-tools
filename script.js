@@ -117,11 +117,15 @@ function initializeNavigation() {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
     
-    mobileMenuToggle?.addEventListener('click', () => {
+    mobileMenuToggle?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         mobileMenu?.classList.toggle('open');
     });
     
-    mobileMenuClose?.addEventListener('click', () => {
+    mobileMenuClose?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         mobileMenu?.classList.remove('open');
     });
     
@@ -132,6 +136,13 @@ function initializeNavigation() {
             !mobileMenuToggle?.contains(e.target)) {
             mobileMenu.classList.remove('open');
         }
+    });
+
+    // Prevent navigation link event propagation issues
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
     });
     
     // Smooth scrolling for navigation links
