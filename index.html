@@ -11,17 +11,19 @@
     <meta name="keywords" content=".NET, C#, development tools, code generator, JSON converter, GUID generator">
 </head>
 <body>
+    <!-- Clean Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="./index.html" class="nav-logo">
                 <span class="logo-icon">🔧</span>
                 <span class="logo-text">.NET Tools</span>
-            </div>
+            </a>
+            
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="./index.html" class="nav-link">Home</a></li>
                 <li><a href="#tools" class="nav-link">Tools</a></li>
-                <li><a href="version-comparison.html" class="nav-link">Version Comparison</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="./version-comparison.html" class="nav-link">Version Comparison</a></li>
+                <li><a href="./contact.html" class="nav-link">Contact</a></li>
                 <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
                 <li>
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
@@ -29,7 +31,10 @@
                     </button>
                 </li>
             </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                ☰
+            </button>
         </div>
     </nav>
 
@@ -40,24 +45,24 @@
                 <span class="logo-icon">🔧</span>
                 <span class="logo-text">.NET Tools</span>
             </div>
-            <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">✕</button>
         </div>
         <ul class="mobile-nav-links">
-            <li><a href="#home">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
             <li><a href="#tools">Tools</a></li>
-            <li><a href="version-comparison.html">Version Comparison</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="./version-comparison.html">Version Comparison</a></li>
+            <li><a href="./contact.html">Contact</a></li>
             <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub ⭐</a></li>
         </ul>
     </div>
 
     <header id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title animated-title">Welcome to .NET Tools</h1>
-            <p class="hero-subtitle fade-in-delay">Your comprehensive toolkit for .NET development with advanced code generators, smart converters, and productivity enhancers</p>
+            <h1 class="hero-title">Welcome to .NET Tools</h1>
+            <p class="hero-subtitle">Your comprehensive toolkit for .NET development with advanced code generators, smart converters, and productivity enhancers</p>
             <div class="hero-buttons">
-                <a href="#tools" class="btn btn-primary pulse-animation">Explore Tools</a>
-                <a href="https://github.com/eladser/.net-tools" class="btn btn-secondary glow-animation" target="_blank">View on GitHub</a>
+                <a href="#tools" class="btn btn-primary">Explore Tools</a>
+                <a href="https://github.com/eladser/.net-tools" class="btn btn-secondary" target="_blank">View on GitHub</a>
             </div>
         </div>
         <div class="hero-background">
@@ -67,9 +72,6 @@
                 <div class="floating-element">🚀</div>
                 <div class="floating-element">🔧</div>
                 <div class="floating-element">⭐</div>
-                <div class="floating-element">🎯</div>
-                <div class="floating-element">🔐</div>
-                <div class="floating-element">📊</div>
             </div>
         </div>
     </header>
@@ -77,8 +79,8 @@
     <main>
         <section id="tools" class="tools-section">
             <div class="container">
-                <h2 class="section-title slide-in-animation">Professional .NET Development Tools</h2>
-                <p class="section-subtitle fade-in-delay">Carefully curated collection of essential tools for modern .NET development</p>
+                <h2 class="section-title">Professional .NET Development Tools</h2>
+                <p class="section-subtitle">Carefully curated collection of essential tools for modern .NET development</p>
                 
                 <div class="tools-tabs">
                     <div class="tab-buttons">
@@ -86,21 +88,9 @@
                             <span class="tab-icon">🎯</span>
                             Code Generators
                         </button>
-                        <button class="tab-button" data-tab="csharp-conversions">
-                            <span class="tab-icon">🔄</span>
-                            C# Conversions
-                        </button>
                         <button class="tab-button" data-tab="converters">
                             <span class="tab-icon">🔢</span>
                             Data Converters
-                        </button>
-                        <button class="tab-button" data-tab="text-tools">
-                            <span class="tab-icon">📝</span>
-                            Text & Format
-                        </button>
-                        <button class="tab-button" data-tab="security">
-                            <span class="tab-icon">🔐</span>
-                            Security
                         </button>
                         <button class="tab-button" data-tab="utilities">
                             <span class="tab-icon">🛠️</span>
@@ -112,7 +102,7 @@
                         <!-- Code Generators Tab -->
                         <div class="tab-panel active" id="code-generators">
                             <div class="tools-grid">
-                                <div class="tool-card featured animate-card">
+                                <div class="tool-card featured">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔄</div>
                                         <div>
@@ -137,72 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tool-card animate-card">
-                                    <div class="tool-header">
-                                        <div class="tool-icon">🏗️</div>
-                                        <div>
-                                            <h3>C# Entity Generator</h3>
-                                            <span class="tool-badge">New</span>
-                                        </div>
-                                    </div>
-                                    <p>Generate Entity Framework models, DTOs, and API controllers from simple descriptions.</p>
-                                    <div class="tool-content">
-                                        <div class="input-group">
-                                            <label>Entity Description:</label>
-                                            <textarea id="entityDescription" placeholder="Describe your entity..." rows="4">User with id, name, email, created date, and list of roles</textarea>
-                                        </div>
-                                        <div class="generator-options">
-                                            <label>Generate: 
-                                                <select id="modelType">
-                                                    <option value="entity">Entity Model</option>
-                                                    <option value="dto">DTO Classes</option>
-                                                    <option value="controller">API Controller</option>
-                                                    <option value="all">Complete Set</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <button onclick="generateCsharpModel()" class="btn btn-primary">Generate Code</button>
-                                        <pre id="modelOutput" class="output"></pre>
-                                    </div>
-                                </div>
-
-                                <div class="tool-card animate-card">
-                                    <div class="tool-header">
-                                        <div class="tool-icon">🔗</div>
-                                        <div>
-                                            <h3>Connection String Builder</h3>
-                                        </div>
-                                    </div>
-                                    <p>Build and test connection strings for SQL Server, MySQL, PostgreSQL, and more.</p>
-                                    <div class="tool-content">
-                                        <div class="connection-form">
-                                            <label>Database Type:
-                                                <select id="dbType">
-                                                    <option value="sqlserver">SQL Server</option>
-                                                    <option value="mysql">MySQL</option>
-                                                    <option value="postgresql">PostgreSQL</option>
-                                                    <option value="sqlite">SQLite</option>
-                                                </select>
-                                            </label>
-                                            <div class="form-row">
-                                                <input type="text" id="server" placeholder="Server" value="localhost">
-                                                <input type="text" id="database" placeholder="Database" value="MyDatabase">
-                                            </div>
-                                            <div class="form-row">
-                                                <input type="text" id="username" placeholder="Username">
-                                                <input type="password" id="password" placeholder="Password">
-                                            </div>
-                                            <div class="generator-options">
-                                                <label><input type="checkbox" id="integratedSecurity" checked> Integrated Security</label>
-                                                <label><input type="checkbox" id="trustServerCertificate"> Trust Server Certificate</label>
-                                            </div>
-                                        </div>
-                                        <button onclick="buildConnectionString()" class="btn btn-primary">Build Connection String</button>
-                                        <textarea id="connectionStringOutput" class="output" readonly></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="tool-card animate-card">
+                                <div class="tool-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🎯</div>
                                         <div>
@@ -236,71 +161,10 @@
                             </div>
                         </div>
 
-                        <!-- Additional tool panels remain the same... -->
-                        <!-- I'll keep the rest of the content as is to save space -->
-                        
-                        <!-- C# Conversions Tab -->
-                        <div class="tab-panel" id="csharp-conversions">
-                            <div class="tools-grid">
-                                <div class="tool-card featured animate-card">
-                                    <div class="tool-header">
-                                        <div class="tool-icon">🔄</div>
-                                        <div>
-                                            <h3>C# Type Converter</h3>
-                                            <span class="tool-badge">New</span>
-                                        </div>
-                                    </div>
-                                    <p>Generate C# code to convert between different data types with proper error handling and validation.</p>
-                                    <div class="tool-content">
-                                        <div class="converter-form">
-                                            <div class="form-row">
-                                                <label>From Type:
-                                                    <select id="fromType">
-                                                        <option value="string">string</option>
-                                                        <option value="int">int</option>
-                                                        <option value="double">double</option>
-                                                        <option value="decimal">decimal</option>
-                                                        <option value="bool">bool</option>
-                                                        <option value="DateTime">DateTime</option>
-                                                        <option value="Guid">Guid</option>
-                                                        <option value="enum">enum</option>
-                                                        <option value="object">object</option>
-                                                    </select>
-                                                </label>
-                                                <label>To Type:
-                                                    <select id="toType">
-                                                        <option value="int">int</option>
-                                                        <option value="string">string</option>
-                                                        <option value="double">double</option>
-                                                        <option value="decimal">decimal</option>
-                                                        <option value="bool">bool</option>
-                                                        <option value="DateTime">DateTime</option>
-                                                        <option value="Guid">Guid</option>
-                                                        <option value="enum">enum</option>
-                                                        <option value="object">object</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div class="generator-options">
-                                                <label><input type="checkbox" id="includeNullHandling" checked> Include Null Handling</label>
-                                                <label><input type="checkbox" id="includeErrorHandling" checked> Include Error Handling</label>
-                                                <label><input type="checkbox" id="includeValidation"> Include Validation</label>
-                                                <label><input type="checkbox" id="useExtensionMethod"> Generate Extension Method</label>
-                                            </div>
-                                        </div>
-                                        <button onclick="generateTypeConversion()" class="btn btn-primary">Generate Conversion Code</button>
-                                        <pre id="typeConversionOutput" class="output"></pre>
-                                    </div>
-                                </div>
-
-                                <!-- Additional C# conversion tools... -->
-                            </div>
-                        </div>
-
                         <!-- Data Converters Tab -->
                         <div class="tab-panel" id="converters">
                             <div class="tools-grid">
-                                <div class="tool-card animate-card">
+                                <div class="tool-card">
                                     <div class="tool-header">
                                         <div class="tool-icon">🔤</div>
                                         <div>
@@ -337,28 +201,107 @@
                                     </div>
                                 </div>
 
-                                <!-- Additional converter tools... -->
-                            </div>
-                        </div>
-
-                        <!-- Text & Format Tab -->
-                        <div class="tab-panel" id="text-tools">
-                            <div class="tools-grid">
-                                <!-- Text tools... -->
-                            </div>
-                        </div>
-
-                        <!-- Security Tab -->
-                        <div class="tab-panel" id="security">
-                            <div class="tools-grid">
-                                <!-- Security tools... -->
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🔢</div>
+                                        <div>
+                                            <h3>Base64 Encoder/Decoder</h3>
+                                        </div>
+                                    </div>
+                                    <p>Encode and decode Base64 strings with URL-safe option and validation.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Input Text:</label>
+                                            <textarea id="base64Input" placeholder="Enter text to encode/decode..." rows="4"></textarea>
+                                        </div>
+                                        <div class="generator-options">
+                                            <label><input type="checkbox" id="urlSafeBase64"> URL-Safe Base64</label>
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="encodeBase64()" class="btn btn-primary">Encode</button>
+                                            <button onclick="decodeBase64()" class="btn btn-secondary">Decode</button>
+                                            <button onclick="validateBase64()" class="btn btn-outline">Validate</button>
+                                        </div>
+                                        <pre id="base64Result" class="output"></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Utilities Tab -->
                         <div class="tab-panel" id="utilities">
                             <div class="tools-grid">
-                                <!-- Utility tools... -->
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">⏰</div>
+                                        <div>
+                                            <h3>Timestamp Converter</h3>
+                                        </div>
+                                    </div>
+                                    <p>Convert between Unix timestamps and human-readable dates in various formats.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Unix Timestamp:</label>
+                                            <input type="number" id="unixTimestamp" placeholder="Enter Unix timestamp...">
+                                        </div>
+                                        <div class="button-group">
+                                            <button onclick="convertTimestampToDate()" class="btn btn-primary">Convert to Date</button>
+                                            <button onclick="useCurrentTime()" class="btn btn-secondary">Use Current Time</button>
+                                        </div>
+                                        <div class="conversion-results">
+                                            <div class="result-item">
+                                                <label>Local Date:</label>
+                                                <span id="dateTimeResult" class="selectable"></span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>ISO 8601:</label>
+                                                <span id="isoResult" class="selectable"></span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>C# DateTime:</label>
+                                                <span id="csharpDateCode" class="selectable"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card">
+                                    <div class="tool-header">
+                                        <div class="tool-icon">🎨</div>
+                                        <div>
+                                            <h3>Color Converter</h3>
+                                        </div>
+                                    </div>
+                                    <p>Convert colors between different formats: HEX, RGB, HSL, and C# Color values.</p>
+                                    <div class="tool-content">
+                                        <div class="input-group">
+                                            <label>Color Input:</label>
+                                            <div class="color-input-group">
+                                                <input type="color" id="colorPicker" value="#3b82f6">
+                                                <input type="text" id="colorInput" placeholder="Enter color (hex, rgb)..." value="#3b82f6">
+                                            </div>
+                                        </div>
+                                        <button onclick="updateColorConversions()" class="btn btn-primary">Convert Color</button>
+                                        <div class="conversion-results">
+                                            <div class="result-item">
+                                                <label>HEX:</label>
+                                                <span id="hexColor" class="selectable">#3b82f6</span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>RGB:</label>
+                                                <span id="rgbColor" class="selectable">rgb(59, 130, 246)</span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>HSL:</label>
+                                                <span id="hslColor" class="selectable">hsl(217, 91%, 60%)</span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>C# Color:</label>
+                                                <span id="csharpColor" class="selectable">Color.FromArgb(59, 130, 246)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -378,8 +321,8 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#tools">Tools</a></li>
-                        <li><a href="version-comparison.html">Version Comparison</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="./version-comparison.html">Version Comparison</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
                         <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub</a></li>
                     </ul>
                 </div>
@@ -398,5 +341,178 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Initialize color converter
+        function updateColorConversions() {
+            const colorInput = document.getElementById('colorInput')?.value || '#3b82f6';
+            let color;
+            
+            try {
+                if (colorInput.startsWith('#')) {
+                    color = hexToRgb(colorInput);
+                } else if (colorInput.startsWith('rgb')) {
+                    const matches = colorInput.match(/\d+/g);
+                    if (matches && matches.length >= 3) {
+                        color = { r: parseInt(matches[0]), g: parseInt(matches[1]), b: parseInt(matches[2]) };
+                    }
+                } else {
+                    throw new Error('Invalid color format');
+                }
+                
+                if (!color) throw new Error('Invalid color');
+                
+                const hex = rgbToHex(color.r, color.g, color.b);
+                const hsl = rgbToHsl(color.r, color.g, color.b);
+                
+                document.getElementById('hexColor').textContent = hex;
+                document.getElementById('rgbColor').textContent = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                document.getElementById('hslColor').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+                document.getElementById('csharpColor').textContent = `Color.FromArgb(${color.r}, ${color.g}, ${color.b})`;
+                
+                document.getElementById('colorPicker').value = hex;
+                
+            } catch (error) {
+                console.error('Color conversion error:', error);
+            }
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+        // Base64 functions
+        function encodeBase64() {
+            const input = document.getElementById('base64Input').value;
+            const urlSafe = document.getElementById('urlSafeBase64').checked;
+            const output = document.getElementById('base64Result');
+            
+            if (!input) {
+                output.textContent = 'Please enter text to encode';
+                return;
+            }
+            
+            try {
+                let encoded = btoa(unescape(encodeURIComponent(input)));
+                if (urlSafe) {
+                    encoded = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+                }
+                output.textContent = encoded;
+            } catch (error) {
+                output.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function decodeBase64() {
+            const input = document.getElementById('base64Input').value;
+            const urlSafe = document.getElementById('urlSafeBase64').checked;
+            const output = document.getElementById('base64Result');
+            
+            if (!input) {
+                output.textContent = 'Please enter Base64 to decode';
+                return;
+            }
+            
+            try {
+                let toDecode = input;
+                if (urlSafe) {
+                    toDecode = toDecode.replace(/-/g, '+').replace(/_/g, '/');
+                    while (toDecode.length % 4) {
+                        toDecode += '=';
+                    }
+                }
+                const decoded = decodeURIComponent(escape(atob(toDecode)));
+                output.textContent = decoded;
+            } catch (error) {
+                output.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function validateBase64() {
+            const input = document.getElementById('base64Input').value;
+            const output = document.getElementById('base64Result');
+            
+            if (!input) {
+                output.textContent = 'Please enter Base64 to validate';
+                return;
+            }
+            
+            const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
+            const isValid = base64Regex.test(input) && input.length % 4 === 0;
+            
+            output.textContent = isValid ? '✓ Valid Base64' : '✗ Invalid Base64';
+        }
+
+        // Timestamp functions
+        function convertTimestampToDate() {
+            const timestamp = document.getElementById('unixTimestamp')?.value;
+            if (!timestamp) return;
+            
+            const date = new Date(parseInt(timestamp) * 1000);
+            
+            document.getElementById('dateTimeResult').textContent = date.toLocaleString();
+            document.getElementById('isoResult').textContent = date.toISOString();
+            document.getElementById('csharpDateCode').textContent = `new DateTime(${date.getFullYear()}, ${date.getMonth() + 1}, ${date.getDate()})`;
+        }
+
+        function useCurrentTime() {
+            const now = Math.floor(Date.now() / 1000);
+            document.getElementById('unixTimestamp').value = now;
+            convertTimestampToDate();
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize color converter
+            const colorPicker = document.getElementById('colorPicker');
+            const colorInput = document.getElementById('colorInput');
+            
+            if (colorPicker) {
+                colorPicker.addEventListener('input', (e) => {
+                    colorInput.value = e.target.value;
+                    updateColorConversions();
+                });
+            }
+            
+            if (colorInput) {
+                colorInput.addEventListener('input', updateColorConversions);
+                updateColorConversions();
+            }
+        });
+    </script>
 </body>
 </html>
