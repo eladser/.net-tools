@@ -1,106 +1,52 @@
-# Contributing to .NET Tools
+# Contributing to .NET Tools 🤝
 
-Thank you for your interest in contributing to .NET Tools! We welcome contributions from everyone.
+We love your input! We want to make contributing to .NET Tools as easy and transparent as possible, whether it's:
 
-## How to Contribute
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
-### 🐛 Reporting Bugs
+## Development Process
 
-If you find a bug, please create an issue with:
-- A clear title and description
-- Steps to reproduce the issue
-- Expected vs actual behavior
-- Browser and OS information
-- Screenshots if applicable
+We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
-### 💡 Suggesting Features
+## Pull Requests
 
-We love new ideas! When suggesting a feature:
-- Check if it already exists or has been requested
-- Provide a clear use case
-- Describe the expected functionality
-- Consider if it fits the project's scope
+Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
-### 🔧 Code Contributions
+1. Fork the repo and create your branch from `main`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature-name`
-3. **Make your changes**: Ensure your code follows our style guidelines
-4. **Test thoroughly**: Make sure all tools work as expected
-5. **Commit your changes**: Use clear, descriptive commit messages
-6. **Push to your fork**: `git push origin feature-name`
-7. **Create a Pull Request**: Provide a clear description of your changes
+## Any contributions you make will be under the MIT Software License
 
-### 📝 Documentation
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-Help improve our documentation by:
-- Fixing typos or unclear explanations
-- Adding code examples
-- Improving README or other docs
-- Creating tutorials or guides
+## Report bugs using GitHub's [issue tracker](https://github.com/eladser/.net-tools/issues)
 
-## Development Guidelines
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/eladser/.net-tools/issues/new).
 
-### Code Style
-- Use semantic HTML5 elements
-- Follow modern JavaScript ES6+ practices
-- Keep CSS organized and well-commented
-- Ensure responsive design works on all devices
+**Great Bug Reports** tend to have:
 
-### New Tools
-When adding a new tool:
-- Create a new card in the tools grid
-- Add appropriate functionality in `script.js`
-- Include proper error handling
-- Add clear descriptions and examples
-- Ensure it works offline (no external API calls)
+- A quick summary and/or background
+- Steps to reproduce
+  - Be specific!
+  - Give sample code if you can
+- What you expected would happen
+- What actually happens
+- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
 
-### Testing
-- Test on multiple browsers (Chrome, Firefox, Safari, Edge)
-- Test on mobile devices
-- Verify all tools work without internet connection
-- Check for accessibility compliance
+People *love* thorough bug reports.
 
-## Project Structure
+## License
 
-```
-.net-tools/
-├── index.html              # Main page with tools
-├── version-comparison.html  # Version comparison page
-├── contact.html            # Contact and support page
-├── styles.css              # All styles
-├── script.js               # Main tools functionality
-├── version-comparison.js   # Version comparison logic
-├── README.md               # Project documentation
-└── .github/
-    └── workflows/
-        └── pages.yml       # GitHub Pages deployment
-```
+By contributing, you agree that your contributions will be licensed under its MIT License.
 
-## Tool Ideas
+## References
 
-Looking for contribution ideas? Consider adding:
-- Base64 encoder/decoder
-- URL encoder/decoder
-- Hash generator (MD5, SHA1, SHA256)
-- Color converter (HEX, RGB, HSL)
-- Lorem ipsum generator
-- Markdown to HTML converter
-- XML formatter/validator
-- SQL formatter
-- Connection string builder
-
-## Questions?
-
-Feel free to:
-- Open an issue for questions
-- Start a discussion on GitHub
-- Reach out via the contact page
-
-## Code of Conduct
-
-Please be respectful and constructive in all interactions. We're here to learn and build together!
-
----
-
-Thank you for contributing to .NET Tools! 🎉
+This document was adapted from the open-source contribution guidelines for [Facebook's Draft](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
