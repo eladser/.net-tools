@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Version Comparison - .NET Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+</head>
+<body>
+    <!-- Clean Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="./index.html" class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">.NET Tools</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./index.html#tools" class="nav-link">Tools</a></li>
+                <li><a href="./version-comparison.html" class="nav-link active">Version Comparison</a></li>
+                <li><a href="./contact.html" class="nav-link">Contact</a></li>
+                <li><a href="https://github.com/eladser/.net-tools" class="nav-link github-link" target="_blank">GitHub ⭐</a></li>
+                <li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">.NET Tools</span>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">✕</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html#tools">Tools</a></li>
+            <li><a href="./version-comparison.html" class="active">Version Comparison</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub ⭐</a></li>
+        </ul>
+    </div>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">.NET Version Comparison</h1>
+            <p class="hero-subtitle">Compare different versions of .NET and discover what's new with detailed explanations and code examples</p>
+        </div>
+        <div class="hero-background">
+            <div class="floating-elements">
+                <div class="floating-element">📊</div>
+                <div class="floating-element">⚡</div>
+                <div class="floating-element">🔄</div>
+                <div class="floating-element">🚀</div>
+                <div class="floating-element">⭐</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="tools-section">
+            <div class="container">
+                <div class="tools-tabs animate-on-scroll">
+                    <div class="tab-content">
+                        <div class="tab-panel active">
+                            <div class="version-selector-card">
+                                <div class="tool-header">
+                                    <div class="tool-icon">📊</div>
+                                    <h3>Select .NET Versions to Compare</h3>
+                                </div>
+                                <p>Choose any two .NET versions to see detailed comparisons with code examples and migration guidance.</p>
+                                
+                                <div class="tool-content">
+                                    <div class="version-inputs">
+                                        <div class="version-select">
+                                            <label for="fromVersion">From Version:</label>
+                                            <select id="fromVersion">
+                                                <option value="netfx45">.NET Framework 4.5</option>
+                                                <option value="netfx472">.NET Framework 4.7.2</option>
+                                                <option value="netfx48">.NET Framework 4.8</option>
+                                                <option value="netfx481">.NET Framework 4.8.1</option>
+                                                <option value="net5">.NET 5.0</option>
+                                                <option value="net6">.NET 6.0</option>
+                                                <option value="net7">.NET 7.0</option>
+                                                <option value="net8">.NET 8.0</option>
+                                                <option value="net9">.NET 9.0</option>
+                                                <option value="net10">.NET 10.0</option>
+                                            </select>
+                                        </div>
+                                        <div class="version-select">
+                                            <label for="toVersion">To Version:</label>
+                                            <select id="toVersion">
+                                                <option value="netfx45">.NET Framework 4.5</option>
+                                                <option value="netfx472">.NET Framework 4.7.2</option>
+                                                <option value="netfx48">.NET Framework 4.8</option>
+                                                <option value="netfx481">.NET Framework 4.8.1</option>
+                                                <option value="net5">.NET 5.0</option>
+                                                <option value="net6" selected>.NET 6.0</option>
+                                                <option value="net7">.NET 7.0</option>
+                                                <option value="net8">.NET 8.0</option>
+                                                <option value="net9">.NET 9.0</option>
+                                                <option value="net10">.NET 10.0</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button onclick="compareVersions()" class="btn btn-primary">Compare Versions</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="comparisonResults" class="comparison-results animate-on-scroll">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>.NET Tools</h3>
+                    <p>Making .NET development easier, one tool at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="./index.html#tools">Tools</a></li>
+                        <li><a href="./version-comparison.html">Version Comparison</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="https://github.com/eladser/.net-tools" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p>If you find this project helpful, please consider starring it on GitHub!</p>
+                    <a href="https://github.com/eladser/.net-tools" class="btn btn-outline" target="_blank">⭐ Star on GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 .NET Tools. Open source project by <a href="https://github.com/eladser" target="_blank">eladser</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Version comparison functionality
+        function compareVersions() {
+            const fromVersion = document.getElementById('fromVersion').value;
+            const toVersion = document.getElementById('toVersion').value;
+            const resultsContainer = document.getElementById('comparisonResults');
+            
+            if (fromVersion === toVersion) {
+                resultsContainer.innerHTML = `
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon">⚠️</div>
+                            <h3>Same Version Selected</h3>
+                        </div>
+                        <p>Please select two different .NET versions to compare.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Generate comparison results
+            const comparison = generateComparison(fromVersion, toVersion);
+            resultsContainer.innerHTML = comparison;
+        }
+        
+        function generateComparison(from, to) {
+            const versions = {
+                netfx45: { name: '.NET Framework 4.5', year: 2012, lts: false },
+                netfx472: { name: '.NET Framework 4.7.2', year: 2018, lts: false },
+                netfx48: { name: '.NET Framework 4.8', year: 2019, lts: false },
+                netfx481: { name: '.NET Framework 4.8.1', year: 2022, lts: false },
+                net5: { name: '.NET 5.0', year: 2020, lts: false },
+                net6: { name: '.NET 6.0', year: 2021, lts: true },
+                net7: { name: '.NET 7.0', year: 2022, lts: false },
+                net8: { name: '.NET 8.0', year: 2023, lts: true },
+                net9: { name: '.NET 9.0', year: 2024, lts: false },
+                net10: { name: '.NET 10.0', year: 2025, lts: false }
+            };
+            
+            const fromInfo = versions[from];
+            const toInfo = versions[to];
+            
+            return `
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon">📊</div>
+                            <h3>Version Overview</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="comparison-table">
+                                <div class="comparison-row">
+                                    <div class="comparison-label">From:</div>
+                                    <div class="comparison-value">${fromInfo.name} (${fromInfo.year})</div>
+                                </div>
+                                <div class="comparison-row">
+                                    <div class="comparison-label">To:</div>
+                                    <div class="comparison-value">${toInfo.name} (${toInfo.year})</div>
+                                </div>
+                                <div class="comparison-row">
+                                    <div class="comparison-label">LTS Support:</div>
+                                    <div class="comparison-value">From: ${fromInfo.lts ? 'Yes' : 'No'} → To: ${toInfo.lts ? 'Yes' : 'No'}</div>
+                                </div>
+                                <div class="comparison-row">
+                                    <div class="comparison-label">Year Gap:</div>
+                                    <div class="comparison-value">${toInfo.year - fromInfo.year} years</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon">🚀</div>
+                            <h3>Key Improvements</h3>
+                        </div>
+                        <div class="tool-content">
+                            <ul>
+                                <li><strong>Performance:</strong> Significant runtime performance improvements</li>
+                                <li><strong>Language Features:</strong> New C# language features and syntax</li>
+                                <li><strong>Libraries:</strong> Enhanced BCL and new APIs</li>
+                                <li><strong>Platform Support:</strong> Better cross-platform compatibility</li>
+                                <li><strong>Tooling:</strong> Improved developer tools and SDK</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon">⚡</div>
+                            <h3>Migration Considerations</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="migration-tips">
+                                <h4>Before Migration:</h4>
+                                <ul>
+                                    <li>Review breaking changes documentation</li>
+                                    <li>Update dependencies and NuGet packages</li>
+                                    <li>Test thoroughly in development environment</li>
+                                    <li>Consider using .NET Upgrade Assistant</li>
+                                </ul>
+                                
+                                <h4>After Migration:</h4>
+                                <ul>
+                                    <li>Verify all functionality works correctly</li>
+                                    <li>Update CI/CD pipelines</li>
+                                    <li>Monitor performance and stability</li>
+                                    <li>Update documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Initialize with default comparison
+        document.addEventListener('DOMContentLoaded', () => {
+            compareVersions();
+        });
+    </script>
+    
+    <style>
+        .comparison-table {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+        
+        .comparison-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 120px;
+        }
+        
+        .comparison-value {
+            color: var(--text-secondary);
+            text-align: right;
+            flex: 1;
+        }
+        
+        .migration-tips h4 {
+            color: var(--primary-color);
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        .migration-tips h4:first-child {
+            margin-top: 0;
+        }
+        
+        .migration-tips ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .migration-tips li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .comparison-label {
+                min-width: auto;
+            }
+            
+            .comparison-value {
+                text-align: left;
+            }
+        }
+    </style>
+</body>
+</html>
