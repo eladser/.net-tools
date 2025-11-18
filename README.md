@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/Deployed_on-GitHub_Pages-success?style=for-the-badge&logo=github)](https://eladser.github.io/.net-tools)
 
-**A modern, professional-grade toolkit for .NET developers featuring 25+ curated development tools with stunning UI and glassmorphism design.**
+**A modern, professional-grade toolkit for .NET developers featuring 25+ curated development tools with clean, professional UI inspired by VS Code and GitHub.**
 
 ---
 
@@ -19,12 +19,13 @@ Access all tools instantly in your browser - no installation required!
 
 ## ✨ **What's New**
 
-### 🎨 **Modern UI Redesign**
-- Beautiful **purple/blue gradient** color scheme (#667eea → #764ba2 → #f093fb)
-- **Glassmorphism effects** with frosted glass aesthetics
-- Smooth animations and transitions
-- Enhanced shadows and hover effects
-- Better mobile responsive design
+### 🎨 **Professional UI Redesign**
+- Clean, professional **indigo & green** color scheme (#4f46e5 indigo, #10b981 green)
+- Inspired by **VS Code, GitHub, and Linear** design language
+- Flat, modern design with subtle shadows
+- Excellent **accessibility** with WCAG contrast ratios
+- Smooth light/dark theme switching
+- Perfect mobile responsive design
 
 ### 🆕 **8 New High-Value Tools**
 - JSON Validator & Formatter with error detection
@@ -90,16 +91,17 @@ Access all tools instantly in your browser - no installation required!
 
 ### ✅ **Professional Quality**
 - **25+ Curated Tools** - Every tool is essential and frequently used
-- **Modern UI/UX** - Stunning glassmorphism design with smooth animations
+- **Modern UI/UX** - Clean, professional design inspired by leading developer tools
 - **Production Ready** - Enterprise-grade functionality and reliability
 - **Regular Updates** - Continuously improved with new features
 
 ### 🌟 **User Experience**
 - **No Installation** - Works entirely in your browser
-- **Beautiful Design** - Purple/blue gradient theme with glassmorphism
+- **Beautiful Design** - Clean indigo & green professional color scheme
 - **Responsive** - Perfect on desktop, tablet, and mobile
 - **Dark/Light Theme** - Switch themes with automatic preference saving
 - **Fast & Efficient** - Optimized for speed and smooth performance
+- **Accessible** - WCAG compliant with excellent contrast ratios
 
 ### 🔒 **Privacy & Security**
 - **100% Client-Side** - All processing happens locally, no data transmission
