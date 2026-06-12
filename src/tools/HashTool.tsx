@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Textarea, ResultRows } from '@/components/ui';
+import { Textarea, ResultRows, Bench, PaneLabel, RefSection, RefCode } from '@/components/ui';
 import { md5 } from '@/lib/md5';
 
 export function HashTool() {
@@ -27,18 +27,42 @@ export function HashTool() {
   };
 
   return (
-    <div className="space-y-3">
-      <Textarea
-        rows={5}
-        placeholder="Text to hash"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={run} className="btn-primary">Hash</button>
-      {rows.length > 0 && <ResultRows rows={rows} />}
-      {rows.length > 0 && (
-        <p className="font-mono text-xs text-faint">SHA-1 and MD5 are broken for security use — shown for checksums and legacy systems only.</p>
-      )}
-    </div>
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>input</PaneLabel>
+          <Textarea
+            rows={10}
+            placeholder="Text to hash"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button onClick={run} className="btn-primary">Hash</button>
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>digests</PaneLabel>
+          {rows.length > 0 ? (
+            <>
+              <ResultRows rows={rows} />
+              <p className="font-mono text-xs text-faint">SHA-1 and MD5 are broken for security use — shown for checksums and legacy systems only.</p>
+            </>
+          ) : (
+            <div className="border border-dashed border-border rounded-md px-3 py-4 text-center font-mono text-xs text-faint">
+              Hashes land here — click any row to copy
+            </div>
+          )}
+        </>
+      }
+    />
+    <RefSection title="the one-liners since .net 5">
+      <RefCode code={`Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(s)));
+
+// Passwords are a different problem — never a bare hash:
+Rfc2898DeriveBytes.Pbkdf2(password, salt, 100_000, HashAlgorithmName.SHA256, 32);`} />
+    </RefSection>
+    </>
   );
 }

@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Textarea, Output } from '@/components/ui';
+import { Textarea, Output, Bench, PaneLabel, RefSection, RefTable } from '@/components/ui';
+
+const CLAIMS: Array<[string, string]> = [
+  ['sub', 'subject — who the token is about'],
+  ['iss', 'issuer'],
+  ['aud', 'audience — who should accept it'],
+  ['exp / nbf / iat', 'expiry, not-before, issued-at (all Unix seconds)'],
+  ['jti', 'unique token id, for revocation lists'],
+  ['scope / roles', 'authorization payload, naming varies by issuer'],
+];
 
 function decodeSegment(seg: string): unknown {
   let b64 = seg.replace(/-/g, '+').replace(/_/g, '/');
@@ -54,30 +63,45 @@ export function JwtTool() {
   };
 
   return (
-    <div className="space-y-3">
-      <Textarea
-        rows={4}
-        placeholder="eyJhbGciOi…"
-        value={input}
-        onChange={(e) => decode(e.target.value)}
-      />
-      {error && <p className="font-mono text-xs text-bad">{error}</p>}
-      {expiry && (
-        <p className={`font-mono text-xs ${expiry.expired ? 'text-bad' : 'text-ok'}`}>{expiry.text}</p>
-      )}
-      {header && (
-        <div className="space-y-3">
-          <div>
-            <div className="font-mono text-xs text-faint mb-1">header</div>
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>token</PaneLabel>
+          <Textarea
+            rows={10}
+            placeholder="eyJhbGciOi…"
+            value={input}
+            onChange={(e) => decode(e.target.value)}
+          />
+          {error && <p className="font-mono text-xs text-bad">{error}</p>}
+          {expiry && (
+            <p className={`font-mono text-xs ${expiry.expired ? 'text-bad' : 'text-ok'}`}>{expiry.text}</p>
+          )}
+          <p className="font-mono text-xs text-faint">Decoding only — the signature is not verified, and the token never leaves this page.</p>
+        </>
+      }
+      right={
+        header ? (
+          <>
+            <PaneLabel>header</PaneLabel>
             <Output text={header} />
-          </div>
-          <div>
-            <div className="font-mono text-xs text-faint mb-1">payload</div>
+            <PaneLabel>payload</PaneLabel>
             <Output text={payload} />
-          </div>
-        </div>
-      )}
-      <p className="font-mono text-xs text-faint">Decoding only — the signature is not verified, and the token never leaves this page.</p>
-    </div>
+          </>
+        ) : (
+          <>
+            <PaneLabel>decoded</PaneLabel>
+            <div className="border border-dashed border-border rounded-md px-3 py-4 text-center font-mono text-xs text-faint">
+              Header and payload land here
+            </div>
+          </>
+        )
+      }
+    />
+    <RefSection title="registered claims">
+      <RefTable rows={CLAIMS} />
+    </RefSection>
+    </>
   );
 }

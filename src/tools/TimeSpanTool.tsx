@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResultRows, Row, Field } from '@/components/ui';
+import { ResultRows, Field, Bench, PaneLabel } from '@/components/ui';
 
 const PARTS = [
   { key: 'days', label: 'Days' },
@@ -32,21 +32,31 @@ export function TimeSpanTool() {
   ];
 
   return (
-    <div className="space-y-3">
-      <Row>
-        {PARTS.map((p) => (
-          <Field key={p.key} label={p.label}>
-            <input
-              type="number"
-              min={0}
-              value={values[p.key]}
-              onChange={(e) => setValues(v => ({ ...v, [p.key]: e.target.value }))}
-              className="field-input w-20"
-            />
-          </Field>
-        ))}
-      </Row>
-      <ResultRows rows={rows} />
-    </div>
+    <Bench
+      left={
+        <>
+          <PaneLabel>components</PaneLabel>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {PARTS.map((p) => (
+              <Field key={p.key} label={p.label}>
+                <input
+                  type="number"
+                  min={0}
+                  value={values[p.key]}
+                  onChange={(e) => setValues(v => ({ ...v, [p.key]: e.target.value }))}
+                  className="field-input"
+                />
+              </Field>
+            ))}
+          </div>
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>totals</PaneLabel>
+          <ResultRows rows={rows} />
+        </>
+      }
+    />
   );
 }

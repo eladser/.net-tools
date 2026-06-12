@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { TOOLS, GROUPS } from './tools/registry';
+import { Launcher } from './Launcher';
+import { version } from '../package.json';
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -10,11 +12,11 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-const DEFAULT_TOOL = TOOLS[0].id;
+const HOME = 'home';
 
 function toolFromHash(): string {
   const id = window.location.hash.replace(/^#\/?/, '');
-  return TOOLS.some(t => t.id === id) ? id : DEFAULT_TOOL;
+  return TOOLS.some(t => t.id === id) ? id : HOME;
 }
 
 export default function App() {
@@ -42,7 +44,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  const active = TOOLS.find(t => t.id === activeId) ?? TOOLS[0];
+  const active = TOOLS.find(t => t.id === activeId) ?? null;
 
   const filtered = useMemo(() => {
     if (!query.trim()) return TOOLS;
@@ -55,19 +57,23 @@ export default function App() {
   }, [query]);
 
   const select = (id: string) => {
-    window.location.hash = id;
+    window.location.hash = id === HOME ? '' : id;
     setActiveId(id);
     setMenuOpen(false);
     setQuery('');
   };
 
-  const ToolBody = active.component;
+  const ToolBody = active?.component;
 
   const sidebar = (
     <div className="flex flex-col h-full">
       <div className="px-4 pt-4 pb-3">
-        <a href="#" className="font-mono text-sm select-none" onClick={(e) => { e.preventDefault(); select(DEFAULT_TOOL); }}>
-          <span className="text-accent">&gt;</span>{' '}
+        <a
+          href="#"
+          className="flex items-center gap-2.5 font-mono text-sm select-none"
+          onClick={(e) => { e.preventDefault(); select(HOME); }}
+        >
+          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="w-5 h-5 rounded" />
           <span className="text-fg font-semibold">.NET Tools</span>
         </a>
       </div>
@@ -119,7 +125,7 @@ export default function App() {
       </nav>
 
       <div className="px-4 py-3 border-t border-border flex items-center justify-between">
-        <span className="font-mono text-xs text-faint">v2.0.0</span>
+        <span className="font-mono text-xs text-faint">v{version}</span>
         <a
           href="https://github.com/eladser/.net-tools"
           target="_blank"
@@ -140,8 +146,9 @@ export default function App() {
         <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu" className="text-muted hover:text-fg">
           {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
-        <span className="font-mono text-sm">
-          <span className="text-accent">&gt;</span> <span className="font-semibold">.NET Tools</span>
+        <span className="flex items-center gap-2 font-mono text-sm">
+          <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="w-5 h-5 rounded" />
+          <span className="font-semibold">.NET Tools</span>
         </span>
       </div>
 
@@ -158,15 +165,29 @@ export default function App() {
 
       {/* Main */}
       <main className="min-w-0">
-        <div className="max-w-3xl px-5 sm:px-8 py-8">
-          <header className="mb-6">
-            <h1 className="text-xl font-semibold tracking-tight">{active.name}</h1>
-            <p className="text-sm text-muted mt-1">{active.desc}</p>
-          </header>
-          <div key={active.id} className="animate-fade-in">
-            <ToolBody />
+        {active && ToolBody ? (
+          <div className="max-w-410 px-5 sm:px-8 py-6">
+            <header className="mb-5 flex items-baseline gap-3 flex-wrap">
+              <h1 className="text-lg font-semibold tracking-tight">{active.name}</h1>
+              <p className="text-sm text-muted">{active.desc}</p>
+            </header>
+            <div key={active.id} className="@container animate-fade-in">
+              <ToolBody />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="max-w-410 px-5 sm:px-8 py-6">
+            <header className="mb-6 flex items-baseline gap-3 flex-wrap">
+              <h1 className="text-lg font-semibold tracking-tight">All tools</h1>
+              <p className="text-sm text-muted">
+                Client-side, nothing leaves the page. Press <kbd className="font-mono text-xs border border-border rounded px-1">/</kbd> to search.
+              </p>
+            </header>
+            <div className="animate-fade-in">
+              <Launcher onSelect={select} />
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

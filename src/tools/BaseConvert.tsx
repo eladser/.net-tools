@@ -45,8 +45,8 @@ export function BaseConvert() {
   };
 
   return (
-    <div className="space-y-3">
-      <div className="space-y-2">
+    <div className="space-y-3 max-w-3xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {BASES.map((b) => (
           <label key={b.key} className="flex items-center gap-3">
             <span className="text-sm text-muted w-16 shrink-0">{b.label}</span>

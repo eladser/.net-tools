@@ -1,26 +1,28 @@
+<p align="center">
+  <img src="public/wordmark.png" alt=".NET Tools" width="380">
+</p>
+
 # .NET Tools
 
-Browser utilities for .NET developers. Twenty tools behind one sidebar — paste, convert, copy, move on. Everything runs client-side; nothing you type leaves the page. No analytics, no tracking, and that's verifiable in the network tab.
+Browser utilities for .NET developers. Paste on the left, read the result on the right, copy, move on. Everything runs client-side, so nothing you type leaves the page. No analytics, no tracking. Check the network tab if you don't believe it.
 
 **[eladser.github.io/.net-tools](https://eladser.github.io/.net-tools/)**
 
-## Tools
+## What's in it
 
-**JSON & C#** — JSON formatter/validator, and a JSON-to-C# generator that handles snake_case → PascalCase with `[JsonPropertyName]`, spots `DateTime` and `Guid` values, merges array items into one type, and picks `int`/`long`/`double` correctly.
+Twenty-five tools. The ones worth calling out:
 
-**Generators** — GUIDs (random v4, or time-ordered v7 matching `Guid.CreateVersion7()` from .NET 9), passwords from `crypto.getRandomValues` with an entropy readout, SHA-256/384/512 plus legacy SHA-1/MD5, and a cron expression builder.
+- **JSON to C#** converts snake_case keys to PascalCase properties with `[JsonPropertyName]`, recognizes dates and GUIDs, merges array items into a single type, and knows when a number needs `long`.
+- **GUID generator** does random v4 and the time-ordered v7 layout that `Guid.CreateVersion7()` produces in .NET 9.
+- **Config to env vars** turns appsettings.json keys into the `Section__Key` form Docker and Kubernetes want, and back.
+- **Date format tester** renders `DateTime.ToString` format strings live as you type.
+- **.NET versions** is a reference table of TFMs, C# pairings, and support windows. Each release expands to its major features, Framework 4.8.1 through the .NET 11 preview.
 
-**Converters** — Base64 and Base64Url, URL encoding, string escaping for C# (regular, verbatim `@"…"`, and C# 11 raw `"""…"""` literals), number bases with BigInt precision past 2^53, and file sizes in 1024 or 1000 mode.
+The rest: JSON formatter, JSON/YAML converter, ULID and password generators, SHA-256/384/512 (plus legacy SHA-1 and MD5), cron builder, Base64 and Base64Url, URL encoding, string escaping including C# 11 raw literals, case converter, number bases (BigInt, no precision loss), file sizes, Unix timestamps, TimeSpan math, JWT decoder, stack trace parser, connection strings for six databases, enum flags visualizer, regex tester, and HTTP status codes.
 
-**Time** — Unix timestamps to everything (ISO, local, relative, `DateTimeOffset` snippet) and a TimeSpan calculator with ticks and microseconds.
+Most tools carry a reference section below them: common cron schedules that load into the builder on click, the `DateTime` format specifier table, .NET naming conventions, JWT claims, which NuGet driver goes with which database, config provider precedence, and the GUID v4-vs-v7 story.
 
-**Security & Debug** — JWT decoder with expiry check, .NET stack trace parser, connection string builder (SQL Server, PostgreSQL, MySQL, SQLite, Redis, MongoDB), `[Flags]` enum bit visualizer with clickable bits, and a live regex tester.
-
-**Reference** — searchable HTTP status codes and a .NET version table: TFMs, C# pairings, LTS/STS windows, and what shipped in each release through the .NET 11 preview.
-
-Direct-link any tool: `…/.net-tools/#json-to-csharp`, `…/#guid`, `…/#jwt`. Press `/` or Ctrl+K to search.
-
-Installable as an offline app (PWA) — open the site in Chrome or Edge and click the install icon in the address bar.
+Every tool has its own link (`/#json-to-csharp`, `/#guid`). Press `/` to search. Installs as an offline app from the address bar in Chrome or Edge.
 
 ## Development
 
@@ -33,7 +35,7 @@ npm run build
 npm run lint
 ```
 
-React 19, Vite 8, Tailwind 4, TypeScript. No runtime dependencies beyond React.
+React 19, Vite 8, Tailwind 4, TypeScript. Runtime dependencies: React and js-yaml, nothing else.
 
 ## License
 

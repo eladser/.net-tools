@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Output, Row, Field, Checkbox } from '@/components/ui';
+import { Output, Row, Field, Checkbox, Bench, PaneLabel } from '@/components/ui';
 
 const SETS = {
   upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -57,30 +57,40 @@ export function PasswordTool() {
     : { label: 'weak', color: 'text-bad' };
 
   return (
-    <div className="space-y-3">
-      <Row>
-        <Field label="Length">
-          <input
-            type="number"
-            min={4}
-            max={128}
-            value={length}
-            onChange={(e) => setLength(parseInt(e.target.value) || 16)}
-            className="field-input w-20"
-          />
-        </Field>
-        <Checkbox label="A-Z" checked={upper} onChange={setUpper} />
-        <Checkbox label="a-z" checked={lower} onChange={setLower} />
-        <Checkbox label="0-9" checked={digits} onChange={setDigits} />
-        <Checkbox label="!@#" checked={symbols} onChange={setSymbols} />
-      </Row>
-      <button onClick={generate} className="btn-primary">Generate</button>
-      <Output text={output} />
-      {output && (
-        <p className="font-mono text-xs text-faint">
-          ~{entropy} bits of entropy · <span className={strength.color}>{strength.label}</span> · crypto.getRandomValues, unbiased
-        </p>
-      )}
-    </div>
+    <Bench
+      left={
+        <>
+          <PaneLabel>options</PaneLabel>
+          <Row>
+            <Field label="Length">
+              <input
+                type="number"
+                min={4}
+                max={128}
+                value={length}
+                onChange={(e) => setLength(parseInt(e.target.value) || 16)}
+                className="field-input w-20"
+              />
+            </Field>
+            <Checkbox label="A-Z" checked={upper} onChange={setUpper} />
+            <Checkbox label="a-z" checked={lower} onChange={setLower} />
+            <Checkbox label="0-9" checked={digits} onChange={setDigits} />
+            <Checkbox label="!@#" checked={symbols} onChange={setSymbols} />
+          </Row>
+          <button onClick={generate} className="btn-primary">Generate</button>
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>password</PaneLabel>
+          <Output text={output} placeholder="Generated password lands here" />
+          {output && (
+            <p className="font-mono text-xs text-faint">
+              ~{entropy} bits of entropy · <span className={strength.color}>{strength.label}</span> · crypto.getRandomValues, unbiased
+            </p>
+          )}
+        </>
+      }
+    />
   );
 }

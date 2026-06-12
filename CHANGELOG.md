@@ -1,38 +1,47 @@
 # Changelog
 
+## 2.1.0 — 2026-06-12
+
+### Added
+- ULID generator: sortable 26-char IDs, timestamp plus crypto-random, Crockford base32.
+- Case converter: Pascal, camel, snake, kebab, constant, title, and dot case from one input.
+- Date format tester: live preview of `DateTime.ToString` format strings, with a common-formats reference.
+- Config to env vars: converts appsettings.json keys to `Section__Key` environment variables and back.
+- JSON to YAML and back. Adds js-yaml as a dependency.
+- The .NET versions reference now expands per release to list its major features.
+
+### Changed
+- Tools show input and result side by side on wide screens.
+- Tool pages have reference sections: common cron schedules load into the builder on click, date format specifiers load into the tester, plus C# snippets and lookup tables per tool (.NET naming conventions, JWT claims, NuGet driver packages, config provider precedence, GUID v4 vs v7, sizes that matter in .NET).
+- The home view lists every tool, with a live status line: Unix time, UTC, the current LTS, and days to the next release.
+- New color theme, icon, and social images.
+- HTTP status codes flow into two columns on wide screens.
+
 ## 2.0.0 — 2026-06-12
 
-Full rework. Same idea — client-side utilities for .NET developers — different execution.
+Rebuilt on React, TypeScript, and Vite. Twenty tools, all client-side.
 
-### Interface
-- Sidebar navigation with grouped tools, search (`/` or Ctrl+K), and one tool per view instead of an 18-tool scroll page. Every tool has a shareable link (`#json-to-csharp`).
-- Dark terminal-native design, matching SimpleConfigDiff — these tools are a family now.
-- Click-to-copy on every result row; copy buttons on output blocks.
+### Added
+- Sidebar navigation with grouped tools, search (`/` or Ctrl+K), and a shareable link per tool (`#json-to-csharp`).
+- GUID v7: time-ordered GUIDs with the same layout as `Guid.CreateVersion7()` in .NET 9.
+- Base64Url mode in the Base64 tool.
+- C# raw string literals (`"""…"""`) and verbatim strings in the escape tool.
+- Redis and MongoDB connection strings.
+- SHA-384, plus relative time and `DateTimeOffset` snippets in the timestamp tool.
+- .NET versions reference: TFMs, C# pairings, and support windows from Framework 4.8.1 to the .NET 11 preview.
 - Installable as an offline app (PWA).
+- Click-to-copy on result rows and output blocks.
 
-### Tool upgrades
-- **JSON to C#**: snake_case keys become PascalCase properties with `[JsonPropertyName]`, ISO dates map to `DateTime`, GUID strings to `Guid`, array items merge into a single type, integers past 2^31 become `long`, and arrays use `List<T>`.
-- **GUID**: added time-ordered v7 (the layout `Guid.CreateVersion7()` produces in .NET 9+), and v4 now comes from `crypto.randomUUID` instead of `Math.random`.
-- **Password**: actually cryptographically secure now — `crypto.getRandomValues` with rejection sampling instead of `Math.random`, which the old version used while claiming "secure".
-- **Base64**: added Base64Url mode (.NET 9's `System.Buffers.Text.Base64Url`), tolerant of stripped padding.
-- **String escape**: added C# 11 raw string literals (`"""…"""` with a quote fence that adapts to your content) and verbatim strings.
-- **JWT decoder**: handles unpadded base64url segments (the old one threw on many real tokens), and shows expiry status.
-- **Number base**: BigInt under the hood — 64-bit values no longer silently lose precision.
-- **Connection strings**: added Redis and MongoDB.
-- **Timestamp**: added milliseconds, relative time, and a `DateTimeOffset` snippet.
-- **Hashes**: added SHA-384; MD5 verified against reference vectors.
-- **Enum flags**: bits are clickable — toggle them and read the value back as a C# expression.
-
-### New
-- **.NET versions reference**: TFMs, C# pairings, LTS/STS support windows, and headline features for every release from Framework 4.8.1 through the .NET 11 preview.
+### Fixed
+- Password generation uses `crypto.getRandomValues` with rejection sampling. It was `Math.random()`.
+- GUID v4 comes from `crypto.randomUUID()`. Also was `Math.random()`.
+- The JWT decoder handles tokens with unpadded base64url segments, which previously failed to decode.
+- Number base conversion uses BigInt, so 64-bit values keep their precision.
+- JSON to C# converts snake_case keys to PascalCase and adds `[JsonPropertyName]`, maps ISO dates to `DateTime` and GUID strings to `Guid`, merges array items into one type, and uses `long` for values past 2^31.
 
 ### Removed
-- Google Analytics. The old site claimed "no tracking" while shipping GA — now the claim is true.
-- Light theme. One theme, done properly.
-
-### Stack
-- Vanilla JS (one 717-line file, inline onclick handlers) → React 19 + TypeScript + Vite 8 + Tailwind 4, one module per tool.
-- Fonts self-hosted; zero external requests of any kind.
+- Google Analytics.
+- The light theme.
 
 ## 1.x — 2025
 

@@ -63,9 +63,9 @@ export function HttpCodes() {
           className="field-input pl-8"
         />
       </div>
-      <div className="divide-y divide-border/60 border-y border-border">
+      <div className="columns-1 xl:columns-2 gap-10">
         {filtered.map(([code, name, desc]) => (
-          <div key={code} className="flex items-baseline gap-4 py-2 px-1">
+          <div key={code} className="flex items-baseline gap-4 py-2 px-1 border-b border-border/60 break-inside-avoid">
             <span className={`font-mono text-sm font-semibold w-10 shrink-0 ${TONE[Math.floor(code / 100)]}`}>
               {code}
             </span>

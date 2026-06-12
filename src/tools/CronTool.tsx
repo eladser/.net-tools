@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { Row, Field, Output } from '@/components/ui';
+import { Field, Output, Bench, PaneLabel, RefSection, RefTable } from '@/components/ui';
+
+const EXAMPLES: Array<[string, string]> = [
+  ['*/5 * * * *', 'every 5 minutes'],
+  ['0 * * * *', 'top of every hour'],
+  ['0 3 * * *', 'nightly at 03:00'],
+  ['30 6 * * 1-5', 'weekdays at 06:30'],
+  ['0 9 * * 1', 'Mondays at 09:00'],
+  ['0 0 1 * *', 'first of the month, midnight'],
+  ['0 12 * * 0', 'Sundays at noon'],
+  ['15 2 1 1 *', 'Jan 1st at 02:15'],
+];
 
 const FIELDS = [
   { key: 'min', label: 'Minute', hint: '0-59' },
@@ -16,6 +27,10 @@ function part(value: string, every: string, names?: string[], offset = 0): strin
   if (value === '*') return every;
   if (value.startsWith('*/')) return `every ${value.slice(2)} ${every.replace('every ', '')}s`;
   if (names && /^\d+$/.test(value)) return names[parseInt(value) - offset] ?? value;
+  if (names && /^\d+-\d+$/.test(value)) {
+    const [a, b] = value.split('-').map(n => names[parseInt(n) - offset] ?? n);
+    return `${a} through ${b}`;
+  }
   return value;
 }
 
@@ -49,25 +64,47 @@ export function CronTool() {
   const desc = describe(values.min, values.hour, values.day, values.month, values.weekday);
 
   return (
-    <div className="space-y-3">
-      <Row>
-        {FIELDS.map((f) => (
-          <Field key={f.key} label={f.label}>
-            <input
-              type="text"
-              value={values[f.key]}
-              onChange={(e) => setValues(v => ({ ...v, [f.key]: e.target.value.trim() || '*' }))}
-              placeholder={f.hint}
-              className="field-input w-20 text-center"
-            />
-          </Field>
-        ))}
-      </Row>
-      <Output text={expr} />
-      <p className="text-sm text-muted">{desc}</p>
-      <p className="font-mono text-xs text-faint">
-        Five-field crontab order: minute, hour, day, month, weekday. Supports *, exact values, and */n steps.
-      </p>
-    </div>
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>fields</PaneLabel>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {FIELDS.map((f) => (
+              <Field key={f.key} label={f.label}>
+                <input
+                  type="text"
+                  value={values[f.key]}
+                  onChange={(e) => setValues(v => ({ ...v, [f.key]: e.target.value.trim() || '*' }))}
+                  placeholder={f.hint}
+                  className="field-input text-center"
+                />
+              </Field>
+            ))}
+          </div>
+          <p className="font-mono text-xs text-faint">
+            Five-field crontab order: minute, hour, day, month, weekday. Supports *, exact values, and */n steps.
+          </p>
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>expression</PaneLabel>
+          <Output text={expr} />
+          <p className="text-sm text-muted">{desc}</p>
+        </>
+      }
+    />
+    <RefSection title="common schedules — click to load">
+      <RefTable
+        rows={EXAMPLES}
+        onPick={(e) => {
+          const [min, hour, day, month, weekday] = e.split(' ');
+          setValues({ min, hour, day, month, weekday });
+        }}
+        pickHint="Quartz and NCrontab also accept a 6-field form with leading seconds; this builder uses the classic 5."
+      />
+    </RefSection>
+    </>
   );
 }

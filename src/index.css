@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 /*
-  Same dark, terminal-native palette as SimpleConfigDiff — these tools are a
-  family. Teal for interactive state, coral/green/amber reserved for meaning.
+  Violet-tinted dark. The hue is .NET's own, desaturated to working-tool
+  levels — accent marks interactive state only; green/coral/amber carry meaning.
 */
 @theme {
-  --color-bg: #0b0d0e;
-  --color-surface: #121517;
-  --color-elevated: #171b1e;
-  --color-fg: #e8eaeb;
-  --color-muted: #9aa1a7;
-  --color-faint: #6a7177;
-  --color-border: #23282c;
-  --color-border-strong: #313840;
+  --color-bg: #0d0c11;
+  --color-surface: #131217;
+  --color-elevated: #1a1820;
+  --color-fg: #eae8ef;
+  --color-muted: #a39daf;
+  --color-faint: #6f6981;
+  --color-border: #272430;
+  --color-border-strong: #383344;
 
-  --color-accent: #4ecdc4;
-  --color-accent-fg: #04110f;
+  --color-accent: #a18fdd;
+  --color-accent-fg: #16102b;
 
-  --color-ok: #3fb950;
-  --color-bad: #f0626a;
-  --color-warn: #e3a93c;
+  --color-ok: #4cb964;
+  --color-bad: #ef6a6a;
+  --color-warn: #d9a23c;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -49,7 +49,7 @@
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 999px; border: 2px solid var(--color-bg); }
-  ::-webkit-scrollbar-thumb:hover { background: #3c444c; }
+  ::-webkit-scrollbar-thumb:hover { background: #463f55; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

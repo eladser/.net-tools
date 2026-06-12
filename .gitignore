@@ -3,6 +3,13 @@ dist
 *.local
 *.log
 
+# design tooling context, not user docs
+PRODUCT.md
+DESIGN.md
+
+# original full-size brand assets (resized copies live in public/)
+assets-src/
+
 .vscode/*
 !.vscode/extensions.json
 .idea

@@ -19,6 +19,11 @@ import { EnumFlags } from './EnumFlags';
 import { RegexTool } from './RegexTool';
 import { HttpCodes } from './HttpCodes';
 import { DotnetVersions } from './DotnetVersions';
+import { UlidTool } from './UlidTool';
+import { CaseTool } from './CaseTool';
+import { DateFormatTool } from './DateFormatTool';
+import { AppSettingsTool } from './AppSettingsTool';
+import { JsonYamlTool } from './JsonYamlTool';
 
 export interface Tool {
   id: string;
@@ -33,9 +38,12 @@ export const TOOLS: Tool[] = [
   // JSON & C#
   { id: 'json-format', name: 'JSON Formatter', desc: 'Format, validate, and minify JSON.', group: 'JSON & C#', keywords: 'pretty print validate minify', component: JsonFormat },
   { id: 'json-to-csharp', name: 'JSON to C#', desc: 'Generate C# classes or records from JSON, with System.Text.Json attributes.', group: 'JSON & C#', keywords: 'class record poco dto generate', component: JsonToCsharp },
+  { id: 'json-yaml', name: 'JSON ↔ YAML', desc: 'Convert both ways — appsettings to compose files and back.', group: 'JSON & C#', keywords: 'yaml convert kubernetes docker compose', component: JsonYamlTool },
+  { id: 'appsettings-env', name: 'Config → Env Vars', desc: 'appsettings.json keys to Section__Key environment variables, both directions.', group: 'JSON & C#', keywords: 'appsettings environment variables docker kubernetes configuration', component: AppSettingsTool },
 
   // Generators
   { id: 'guid', name: 'GUID Generator', desc: 'Random v4 or timestamp-ordered v7 GUIDs, in the format you need.', group: 'Generators', keywords: 'uuid v4 v7 CreateVersion7 unique id', component: GuidTool },
+  { id: 'ulid', name: 'ULID Generator', desc: 'Sortable 26-char IDs — timestamp plus crypto-random, Crockford base32.', group: 'Generators', keywords: 'ulid sortable id identifier', component: UlidTool },
   { id: 'password', name: 'Password Generator', desc: 'Random passwords from crypto.getRandomValues, with entropy readout.', group: 'Generators', keywords: 'secure random secret', component: PasswordTool },
   { id: 'hash', name: 'Hash Generator', desc: 'SHA-256, SHA-384, SHA-512, SHA-1 and MD5 of any text.', group: 'Generators', keywords: 'sha256 sha512 md5 checksum digest', component: HashTool },
   { id: 'cron', name: 'Cron Builder', desc: 'Build a cron expression and read it back in plain words.', group: 'Generators', keywords: 'schedule quartz ncrontab', component: CronTool },
@@ -44,11 +52,13 @@ export const TOOLS: Tool[] = [
   { id: 'base64', name: 'Base64', desc: 'Encode and decode Base64 or Base64Url, UTF-8 safe.', group: 'Converters', keywords: 'base64url encode decode', component: Base64Tool },
   { id: 'url-encode', name: 'URL Encode', desc: 'Encode and decode URL components.', group: 'Converters', keywords: 'percent escape uri', component: UrlTool },
   { id: 'string-escape', name: 'String Escape', desc: 'Escape for C# (including raw string literals), JSON, or SQL.', group: 'Converters', keywords: 'raw string literal verbatim quote', component: EscapeTool },
+  { id: 'case', name: 'Case Converter', desc: 'One identifier, every casing: Pascal, camel, snake, kebab, constant.', group: 'Converters', keywords: 'camelcase pascalcase snake_case kebab rename', component: CaseTool },
   { id: 'number-base', name: 'Number Base', desc: 'Decimal, hex, binary, and octal — edit any one.', group: 'Converters', keywords: 'hex binary octal radix', component: BaseConvert },
   { id: 'file-size', name: 'File Size', desc: 'Bytes through EB, in binary (1024) or decimal (1000) mode.', group: 'Converters', keywords: 'kb mb gb kib mib bytes', component: FileSize },
 
   // Time
   { id: 'timestamp', name: 'Unix Timestamp', desc: 'Timestamps to dates, dates to timestamps, with C# snippets.', group: 'Time', keywords: 'epoch unix DateTimeOffset utc', component: TimestampTool },
+  { id: 'date-format', name: 'Date Format Tester', desc: 'Type a DateTime.ToString format string, see it rendered live.', group: 'Time', keywords: 'tostring format specifier yyyy custom', component: DateFormatTool },
   { id: 'timespan', name: 'TimeSpan', desc: '.NET ticks, totals, and TimeSpan strings from time components.', group: 'Time', keywords: 'ticks duration milliseconds microseconds', component: TimeSpanTool },
 
   // Security & Debug

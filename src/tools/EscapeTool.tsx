@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Textarea, Output, Segmented } from '@/components/ui';
+import { Textarea, Output, Segmented, Bench, PaneLabel } from '@/components/ui';
 
 type Format = 'csharp' | 'raw' | 'verbatim' | 'json' | 'sql';
 
@@ -66,35 +66,45 @@ export function EscapeTool() {
   };
 
   return (
-    <div className="space-y-3">
-      <Segmented
-        options={[
-          { value: 'csharp', label: 'C# "…"' },
-          { value: 'raw', label: 'C# """raw"""' },
-          { value: 'verbatim', label: 'C# @"…"' },
-          { value: 'json', label: 'JSON' },
-          { value: 'sql', label: 'SQL' },
-        ]}
-        value={format}
-        onChange={setFormat}
-      />
-      <Textarea
-        rows={5}
-        placeholder="Text to escape, or an escaped string to undo"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <div className="flex items-center gap-2">
-        <button onClick={() => run('escape')} className="btn-primary">Escape</button>
-        <button onClick={() => run('unescape')} className="btn-secondary">Unescape</button>
-      </div>
-      {error && <p className="font-mono text-xs text-bad">{error}</p>}
-      <Output text={output} />
-      {format === 'raw' && (
-        <p className="font-mono text-xs text-faint">
-          Raw string literals (C# 11+): no escaping inside, the quote fence grows past any quote run in your text.
-        </p>
-      )}
-    </div>
+    <Bench
+      left={
+        <>
+          <PaneLabel>input</PaneLabel>
+          <Segmented
+            options={[
+              { value: 'csharp', label: 'C# "…"' },
+              { value: 'raw', label: 'C# """raw"""' },
+              { value: 'verbatim', label: 'C# @"…"' },
+              { value: 'json', label: 'JSON' },
+              { value: 'sql', label: 'SQL' },
+            ]}
+            value={format}
+            onChange={setFormat}
+          />
+          <Textarea
+            rows={12}
+            placeholder="Text to escape, or an escaped string to undo"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <div className="flex items-center gap-2">
+            <button onClick={() => run('escape')} className="btn-primary">Escape</button>
+            <button onClick={() => run('unescape')} className="btn-secondary">Unescape</button>
+          </div>
+          {error && <p className="font-mono text-xs text-bad">{error}</p>}
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>result</PaneLabel>
+          <Output text={output} placeholder="Escaped or unescaped string lands here" />
+          {format === 'raw' && (
+            <p className="font-mono text-xs text-faint">
+              Raw string literals (C# 11+): no escaping inside, the quote fence grows past any quote run in your text.
+            </p>
+          )}
+        </>
+      }
+    />
   );
 }

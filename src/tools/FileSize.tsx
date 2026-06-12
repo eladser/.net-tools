@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Segmented } from '@/components/ui';
+import { Segmented, RefSection, RefTable } from '@/components/ui';
+
+const LANDMARKS: Array<[string, string]> = [
+  ['85,000 B', 'large object heap threshold — allocations this size go to the LOH'],
+  ['64 KB', 'default ArrayPool<byte> max bucket'],
+  ['2,147,483,591 B', 'max array size (just under 2 GB, even on 64-bit)'],
+  ['4 KB / 8 KB', 'typical OS page / SQL Server page'],
+  ['30 MB', 'default Kestrel request body limit'],
+  ['250 MB', 'NuGet package size limit on nuget.org'],
+];
 
 const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB'] as const;
 type Unit = typeof UNITS[number];
@@ -38,13 +47,13 @@ export function FileSize() {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 max-w-3xl">
       <Segmented
         options={[{ value: 'binary', label: '1024 (KiB-style)' }, { value: 'decimal', label: '1000 (SI)' }]}
         value={mode}
         onChange={switchMode}
       />
-      <div className="space-y-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
         {UNITS.map((u) => (
           <label key={u} className="flex items-center gap-3">
             <span className="font-mono text-sm text-muted w-10 shrink-0">{u}</span>
@@ -58,6 +67,9 @@ export function FileSize() {
           </label>
         ))}
       </div>
+      <RefSection title="sizes that matter in .net">
+        <RefTable rows={LANDMARKS} />
+      </RefSection>
     </div>
   );
 }

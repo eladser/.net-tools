@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ResultRows, Row } from '@/components/ui';
+import { ResultRows, Row, Bench, PaneLabel, RefSection, RefCode } from '@/components/ui';
 
 export function TimestampTool() {
   const [input, setInput] = useState('');
@@ -42,22 +42,46 @@ export function TimestampTool() {
   };
 
   return (
-    <div className="space-y-3">
-      <Row>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => convert(e.target.value)}
-          placeholder="1749600000, 2026-06-12, or any parseable date"
-          className="field-input flex-1"
-        />
-        <button onClick={() => convert(String(Math.floor(Date.now() / 1000)))} className="btn-secondary">
-          Now
-        </button>
-      </Row>
-      {error && <p className="font-mono text-xs text-bad">{error}</p>}
-      {rows.length > 0 && <ResultRows rows={rows} />}
-    </div>
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>timestamp or date</PaneLabel>
+          <Row>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => convert(e.target.value)}
+              placeholder="1749600000, 2026-06-12, or any parseable date"
+              className="field-input flex-1"
+            />
+            <button onClick={() => convert(String(Math.floor(Date.now() / 1000)))} className="btn-secondary">
+              Now
+            </button>
+          </Row>
+          {error && <p className="font-mono text-xs text-bad">{error}</p>}
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>conversions</PaneLabel>
+          {rows.length > 0 ? <ResultRows rows={rows} /> : (
+            <div className="border border-dashed border-border rounded-md px-3 py-4 text-center font-mono text-xs text-faint">
+              Unix, ISO, local, relative, and C# land here
+            </div>
+          )}
+        </>
+      }
+    />
+    <RefSection title="both directions in c#">
+      <RefCode code={`DateTimeOffset.FromUnixTimeSeconds(1749600000);   // ts -> time
+DateTimeOffset.UtcNow.ToUnixTimeSeconds();        // time -> ts
+DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+// Prefer DateTimeOffset over DateTime for timestamps:
+// it carries the offset, so no DateTimeKind ambiguity.`} />
+    </RefSection>
+    </>
   );
 }
 

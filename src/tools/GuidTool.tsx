@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Output, Row, Field, Segmented } from '@/components/ui';
+import { Output, Row, Field, Segmented, Bench, PaneLabel, RefSection, RefTable, RefCode } from '@/components/ui';
 
 type GuidVersion = 'v4' | 'v7';
 type GuidFormat = 'standard' | 'nohyphens' | 'braces' | 'csharp';
@@ -45,37 +45,61 @@ export function GuidTool() {
   };
 
   return (
-    <div className="space-y-3">
-      <Row>
-        <Segmented
-          options={[{ value: 'v4', label: 'v4 random' }, { value: 'v7', label: 'v7 sortable' }]}
-          value={version}
-          onChange={setVersion}
-        />
-        <Field label="Count">
-          <input
-            type="number"
-            min={1}
-            max={100}
-            value={count}
-            onChange={(e) => setCount(parseInt(e.target.value) || 1)}
-            className="field-input w-20"
-          />
-        </Field>
-        <select value={format} onChange={(e) => setFormat(e.target.value as GuidFormat)} className="field-select">
-          <option value="standard">xxxxxxxx-xxxx-…</option>
-          <option value="nohyphens">no hyphens</option>
-          <option value="braces">{'{braces}'}</option>
-          <option value="csharp">new Guid("…")</option>
-        </select>
-      </Row>
-      {version === 'v7' && (
-        <p className="font-mono text-xs text-faint">
-          v7 = time-ordered, index-friendly. Same layout as Guid.CreateVersion7() in .NET 9+.
-        </p>
-      )}
-      <button onClick={generate} className="btn-primary">Generate</button>
-      <Output text={output} />
-    </div>
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>options</PaneLabel>
+          <Row>
+            <Segmented
+              options={[{ value: 'v4', label: 'v4 random' }, { value: 'v7', label: 'v7 sortable' }]}
+              value={version}
+              onChange={setVersion}
+            />
+          </Row>
+          <Row>
+            <Field label="Count">
+              <input
+                type="number"
+                min={1}
+                max={100}
+                value={count}
+                onChange={(e) => setCount(parseInt(e.target.value) || 1)}
+                className="field-input w-20"
+              />
+            </Field>
+            <select value={format} onChange={(e) => setFormat(e.target.value as GuidFormat)} className="field-select">
+              <option value="standard">xxxxxxxx-xxxx-…</option>
+              <option value="nohyphens">no hyphens</option>
+              <option value="braces">{'{braces}'}</option>
+              <option value="csharp">new Guid("…")</option>
+            </select>
+          </Row>
+          <button onClick={generate} className="btn-primary">Generate</button>
+          {version === 'v7' && (
+            <p className="font-mono text-xs text-faint">
+              v7 = time-ordered, index-friendly. Same layout as Guid.CreateVersion7() in .NET 9+.
+            </p>
+          )}
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>guids</PaneLabel>
+          <Output text={output} placeholder="Generated GUIDs land here" />
+        </>
+      }
+    />
+    <RefSection title="v4 vs v7">
+      <RefTable rows={[
+        ['v4 — fully random', 'Fine as an opaque identifier. As a clustered primary key it fragments B-tree indexes: inserts land everywhere.'],
+        ['v7 — time-ordered', 'First 48 bits are a Unix ms timestamp, so new values sort last. Inserts append instead of splitting pages. Use for database keys.'],
+        ['v7 caveat', 'The timestamp leaks creation time. Don’t use where that matters.'],
+      ]} />
+      <RefCode code={`Guid.NewGuid();          // v4
+Guid.CreateVersion7();   // v7, .NET 9+
+Guid.CreateVersion7(timeProvider.GetUtcNow()); // testable`} />
+    </RefSection>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Row, Field, Segmented } from '@/components/ui';
+import { Row, Field, Segmented, Bench, PaneLabel, RefSection, RefCode } from '@/components/ui';
 
 const PRESETS = {
   file: {
@@ -46,52 +46,92 @@ export function EnumFlags() {
   };
 
   return (
-    <div className="space-y-3">
-      <Row>
-        <Segmented
-          options={(Object.keys(PRESETS) as PresetKey[]).map(k => ({ value: k, label: PRESETS[k].label }))}
-          value={preset}
-          onChange={setPreset}
-        />
-        <Field label="Value">
-          <input
-            type="text"
-            value={raw}
-            onChange={(e) => setRaw(e.target.value)}
-            className="field-input w-28"
-          />
-        </Field>
-      </Row>
-      {!valid && raw.trim() !== '' && <p className="font-mono text-xs text-bad">Enter a non-negative integer</p>}
-      {valid && (
+    <>
+    <Bench
+      left={
         <>
-          <div className="font-mono text-xs text-faint">
-            binary {value.toString(2).padStart(16, '0')} · hex 0x{value.toString(16).toUpperCase()}
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-            {flags.map(([name, bit]) => {
-              const on = (value & bit) === bit;
-              return (
-                <button
-                  key={name}
-                  onClick={() => toggle(bit)}
-                  className={`flex items-center justify-between px-2.5 py-1.5 rounded border text-left font-mono text-xs transition-colors ${
-                    on
-                      ? 'border-accent/50 bg-accent/10 text-accent'
-                      : 'border-border text-muted hover:border-border-strong'
-                  }`}
-                >
-                  <span>{name}</span>
-                  <span className="text-faint">{bit}</span>
-                </button>
-              );
-            })}
-          </div>
-          {expression && (
-            <p className="font-mono text-sm text-fg break-all">{expression}</p>
+          <PaneLabel>flags</PaneLabel>
+          <Row>
+            <Segmented
+              options={(Object.keys(PRESETS) as PresetKey[]).map(k => ({ value: k, label: PRESETS[k].label }))}
+              value={preset}
+              onChange={setPreset}
+            />
+            <Field label="Value">
+              <input
+                type="text"
+                value={raw}
+                onChange={(e) => setRaw(e.target.value)}
+                className="field-input w-28"
+              />
+            </Field>
+          </Row>
+          {!valid && raw.trim() !== '' && <p className="font-mono text-xs text-bad">Enter a non-negative integer</p>}
+          {valid && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+              {flags.map(([name, bit]) => {
+                const on = (value & bit) === bit;
+                return (
+                  <button
+                    key={name}
+                    onClick={() => toggle(bit)}
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded border text-left font-mono text-xs transition-colors ${
+                      on
+                        ? 'border-accent/50 bg-accent/10 text-accent'
+                        : 'border-border text-muted hover:border-border-strong'
+                    }`}
+                  >
+                    <span>{name}</span>
+                    <span className="text-faint">{bit}</span>
+                  </button>
+                );
+              })}
+            </div>
           )}
         </>
-      )}
-    </div>
+      }
+      right={
+        valid ? (
+          <>
+            <PaneLabel>decomposition</PaneLabel>
+            <div className="font-mono text-sm text-fg">
+              <div className="flex items-baseline gap-3 py-1.5 border-b border-border/60">
+                <span className="text-xs text-faint w-16">decimal</span>{value}
+              </div>
+              <div className="flex items-baseline gap-3 py-1.5 border-b border-border/60">
+                <span className="text-xs text-faint w-16">hex</span>0x{value.toString(16).toUpperCase()}
+              </div>
+              <div className="flex items-baseline gap-3 py-1.5 border-b border-border/60">
+                <span className="text-xs text-faint w-16">binary</span>{value.toString(2).padStart(16, '0')}
+              </div>
+            </div>
+            {expression && (
+              <p className="font-mono text-sm text-accent break-all">{expression}</p>
+            )}
+          </>
+        ) : (
+          <>
+            <PaneLabel>decomposition</PaneLabel>
+            <div className="border border-dashed border-border rounded-md px-3 py-4 text-center font-mono text-xs text-faint">
+              Set bits and the C# expression land here
+            </div>
+          </>
+        )
+      }
+    />
+    <RefSection title="declaring one properly">
+      <RefCode code={`[Flags]
+public enum Permissions
+{
+    None    = 0,
+    Read    = 1 << 0,
+    Write   = 1 << 1,
+    Delete  = 1 << 2,
+    All     = Read | Write | Delete,
+}
+
+// (perms & Permissions.Write) != 0 is faster than HasFlag on hot paths`} />
+    </RefSection>
+    </>
   );
 }

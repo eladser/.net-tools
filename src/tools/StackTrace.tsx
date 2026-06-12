@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Textarea } from '@/components/ui';
+import { Textarea, Bench, PaneLabel } from '@/components/ui';
 
 interface Frame {
   raw: string;
@@ -31,18 +31,21 @@ export function StackTrace() {
   const withSource = frames.filter(f => f.file).length;
 
   return (
-    <div className="space-y-3">
-      <Textarea
-        rows={7}
-        placeholder={'System.NullReferenceException: Object reference not set…\n   at MyApp.Services.UserService.GetUser(Int32 id) in C:\\src\\UserService.cs:line 42'}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      {frames.length > 0 && (
+    <Bench
+      left={
         <>
-          <p className="font-mono text-xs text-faint">
-            {frames.filter(f => !f.isException).length} frames · {withSource} with source info
-          </p>
+          <PaneLabel>stack trace</PaneLabel>
+          <Textarea
+            rows={16}
+            placeholder={'System.NullReferenceException: Object reference not set…\n   at MyApp.Services.UserService.GetUser(Int32 id) in C:\\src\\UserService.cs:line 42'}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </>
+      }
+      right={frames.length > 0 ? (
+        <>
+          <PaneLabel>{frames.filter(f => !f.isException).length} frames · {withSource} with source info</PaneLabel>
           <div className="divide-y divide-border/60 border-y border-border">
             {frames.map((f, i) => (
               <div key={i} className="py-2 px-1">
@@ -68,7 +71,14 @@ export function StackTrace() {
             ))}
           </div>
         </>
+      ) : (
+        <>
+          <PaneLabel>parsed</PaneLabel>
+          <div className="border border-dashed border-border rounded-md px-3 py-4 text-center font-mono text-xs text-faint">
+            Frames land here, methods and source lines separated
+          </div>
+        </>
       )}
-    </div>
+    />
   );
 }

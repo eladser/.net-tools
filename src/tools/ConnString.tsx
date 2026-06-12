@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Output, Row, Field, Checkbox } from '@/components/ui';
+import { Output, Row, Field, Checkbox, Bench, PaneLabel, RefSection, RefTable } from '@/components/ui';
+
+const PACKAGES: Array<[string, string]> = [
+  ['Microsoft.Data.SqlClient', 'SQL Server — the maintained one, not System.Data.SqlClient'],
+  ['Npgsql', 'PostgreSQL'],
+  ['MySqlConnector', 'MySQL — async-first, preferred over MySql.Data'],
+  ['Microsoft.Data.Sqlite', 'SQLite'],
+  ['StackExchange.Redis', 'Redis'],
+  ['MongoDB.Driver', 'MongoDB'],
+];
 
 type Db = 'sqlserver' | 'postgres' | 'mysql' | 'sqlite' | 'redis' | 'mongodb';
 
@@ -51,7 +60,11 @@ export function ConnString() {
   }
 
   return (
-    <div className="space-y-3">
+    <>
+    <Bench
+      left={
+        <>
+          <PaneLabel>database</PaneLabel>
       <Row>
         <select value={db} onChange={(e) => setDb(e.target.value as Db)} className="field-select">
           {DBS.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
@@ -87,7 +100,21 @@ export function ConnString() {
           <Checkbox label="TrustServerCertificate" checked={trust} onChange={setTrust} />
         </Row>
       )}
-      <Output text={conn} />
-    </div>
+        </>
+      }
+      right={
+        <>
+          <PaneLabel>connection string</PaneLabel>
+          <Output text={conn} />
+          <p className="font-mono text-xs text-faint">
+            Keep real credentials in user-secrets or environment variables, not in appsettings.json.
+          </p>
+        </>
+      }
+    />
+    <RefSection title="which nuget package">
+      <RefTable rows={PACKAGES} />
+    </RefSection>
+    </>
   );
 }

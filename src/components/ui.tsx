@@ -61,7 +61,7 @@ export function Checkbox({ label, checked, onChange }: {
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="accent-(--color-accent) w-3.5 h-3.5"
+        className="accent-accent w-3.5 h-3.5"
       />
       {label}
     </label>
@@ -70,6 +70,78 @@ export function Checkbox({ label, checked, onChange }: {
 
 export function Row({ children }: { children: ReactNode }) {
   return <div className="flex items-center gap-4 flex-wrap">{children}</div>;
+}
+
+// Workbench: input/controls left, result right. Container-query driven, so the
+// same tool renders side-by-side in focus view and stacked inside a wall panel.
+export function Bench({ left, right }: { left: ReactNode; right: ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 @3xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-x-6 gap-y-4 items-start">
+      <div className="space-y-3 min-w-0">{left}</div>
+      <div className="space-y-3 min-w-0">{right}</div>
+    </div>
+  );
+}
+
+export function PaneLabel({ children }: { children: ReactNode }) {
+  return <div className="font-mono text-[11px] uppercase tracking-wider text-faint">{children}</div>;
+}
+
+// Per-tool reference content below the bench — what makes a single-tool page
+// worth a full page. Tables, snippets, lookups specific to that tool.
+export function RefSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mt-10 pt-5 border-t border-border space-y-3 max-w-4xl">
+      <PaneLabel>{title}</PaneLabel>
+      {children}
+    </section>
+  );
+}
+
+export function RefTable({ rows, onPick, pickHint }: {
+  rows: Array<[string, string]>;
+  onPick?: (key: string) => void;
+  pickHint?: string;
+}) {
+  return (
+    <div>
+      <div className="divide-y divide-border/60 border-y border-border">
+        {rows.map(([k, v]) => {
+          const inner = (
+            <>
+              <span className="font-mono text-sm text-fg w-56 shrink-0 break-all">{k}</span>
+              <span className="text-sm text-muted">{v}</span>
+            </>
+          );
+          return onPick ? (
+            <button
+              key={k}
+              onClick={() => onPick(k)}
+              className="w-full flex items-baseline gap-4 py-1.5 px-1 text-left hover:bg-elevated/60 transition-colors"
+            >
+              {inner}
+            </button>
+          ) : (
+            <div key={k} className="flex items-baseline gap-4 py-1.5 px-1">{inner}</div>
+          );
+        })}
+      </div>
+      {onPick && pickHint && <p className="font-mono text-xs text-faint mt-2">{pickHint}</p>}
+    </div>
+  );
+}
+
+export function RefCode({ code }: { code: string }) {
+  return (
+    <div className="relative group">
+      <pre className="font-mono text-[13px] leading-relaxed bg-bg border border-border rounded-md px-3 py-2.5 overflow-x-auto text-muted">
+        {code}
+      </pre>
+      <div className="absolute top-1.5 right-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        <CopyButton text={code} />
+      </div>
+    </div>
+  );
 }
 
 export function Textarea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
