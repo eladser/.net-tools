@@ -1,0 +1,24 @@
+{
+  "name": ".NET Tools",
+  "short_name": ".NET Tools",
+  "description": "Browser utilities for .NET developers — JSON to C#, GUID v7, JWT decoder, and more.",
+  "start_url": "/.net-tools/",
+  "scope": "/.net-tools/",
+  "display": "standalone",
+  "background_color": "#0b0d0e",
+  "theme_color": "#0b0d0e",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,74 +1,40 @@
 # .NET Tools
 
-A collection of practical developer utilities for .NET developers. No frameworks, no tracking - just useful tools that work in your browser.
+Browser utilities for .NET developers. Twenty tools behind one sidebar — paste, convert, copy, move on. Everything runs client-side; nothing you type leaves the page. No analytics, no tracking, and that's verifiable in the network tab.
 
-**[Live Demo](https://eladser.github.io/.net-tools)**
+**[eladser.github.io/.net-tools](https://eladser.github.io/.net-tools/)**
 
 ## Tools
 
-### JSON
-- **Formatter & Validator** - Format, validate, and minify JSON with error highlighting
-- **JSON to C#** - Generate C# classes or records from JSON with nullable support
+**JSON & C#** — JSON formatter/validator, and a JSON-to-C# generator that handles snake_case → PascalCase with `[JsonPropertyName]`, spots `DateTime` and `Guid` values, merges array items into one type, and picks `int`/`long`/`double` correctly.
 
-### Generators
-- **GUID Generator** - Generate UUIDs in various formats (standard, no hyphens, braces, C#)
-- **Password Generator** - Create secure passwords with entropy-based strength meter
-- **Hash Generator** - Compute MD5, SHA-1, SHA-256, SHA-512 hashes
-- **Cron Builder** - Build cron expressions visually with human-readable descriptions
+**Generators** — GUIDs (random v4, or time-ordered v7 matching `Guid.CreateVersion7()` from .NET 9), passwords from `crypto.getRandomValues` with an entropy readout, SHA-256/384/512 plus legacy SHA-1/MD5, and a cron expression builder.
 
-### Converters
-- **Base64** - Encode/decode Base64 with UTF-8 support
-- **Unix Timestamp** - Convert timestamps to human-readable dates and C# DateTime
-- **Number Base Converter** - Convert between decimal, hex, binary, and octal
-- **File Size Converter** - Convert bytes through KB, MB, GB, TB, PB, EB (binary/decimal modes)
-- **TimeSpan Calculator** - Convert .NET ticks, milliseconds, and time components
-- **String Escape** - Escape/unescape strings for C#, JSON, or SQL
-- **URL Encode** - Encode/decode URL components
+**Converters** — Base64 and Base64Url, URL encoding, string escaping for C# (regular, verbatim `@"…"`, and C# 11 raw `"""…"""` literals), number bases with BigInt precision past 2^53, and file sizes in 1024 or 1000 mode.
 
-### Security & Debug
-- **JWT Decoder** - Decode JSON Web Tokens to inspect header and payload
-- **Stack Trace Analyzer** - Parse .NET stack traces into readable format
-- **Enum Flags Calculator** - Visualize bitwise [Flags] enum values with presets
-- **Connection String Builder** - Generate connection strings for SQL Server, MySQL, PostgreSQL, SQLite
-- **Regex Tester** - Test regular expressions with real-time matching
+**Time** — Unix timestamps to everything (ISO, local, relative, `DateTimeOffset` snippet) and a TimeSpan calculator with ticks and microseconds.
 
-### Reference
-- **HTTP Status Codes** - Quick searchable reference for HTTP status codes
+**Security & Debug** — JWT decoder with expiry check, .NET stack trace parser, connection string builder (SQL Server, PostgreSQL, MySQL, SQLite, Redis, MongoDB), `[Flags]` enum bit visualizer with clickable bits, and a live regex tester.
 
-## Features
+**Reference** — searchable HTTP status codes and a .NET version table: TFMs, C# pairings, LTS/STS windows, and what shipped in each release through the .NET 11 preview.
 
-- 100% client-side - no data leaves your browser
-- Dark/light theme with system preference detection
-- Responsive design
-- No dependencies, no tracking
-- Clean, minimal UI
+Direct-link any tool: `…/.net-tools/#json-to-csharp`, `…/#guid`, `…/#jwt`. Press `/` or Ctrl+K to search.
 
-## Local Development
+Installable as an offline app (PWA) — open the site in Chrome or Edge and click the install icon in the address bar.
+
+## Development
 
 ```bash
 git clone https://github.com/eladser/.net-tools.git
 cd .net-tools
-
-# Open index.html directly, or use a local server:
-python -m http.server 8000
-# Then visit http://localhost:8000
+npm install
+npm run dev      # localhost:3001
+npm run build
+npm run lint
 ```
 
-## Tech Stack
-
-- Vanilla JavaScript
-- CSS custom properties for theming
-- Web Crypto API for hashing
-- GitHub Pages for hosting
-
-## Support
-
-If you find this useful, consider [buying me a coffee](https://ko-fi.com/eladser).
+React 19, Vite 8, Tailwind 4, TypeScript. No runtime dependencies beyond React.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
----
-
-Created by [eladser](https://github.com/eladser)
+MIT
