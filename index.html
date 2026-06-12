@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Developer Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>.N</text></svg>">
+    <meta name="description" content="Developer utilities for .NET - JSON, GUID, Base64, JWT, and more.">
+    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your own ID if you fork this repo -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEWCBDBH2W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VEWCBDBH2W');
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <span class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">.NET Tools</span>
+            <div class="nav-links">
+                <a href="#json">JSON</a>
+                <a href="#generators">Generators</a>
+                <a href="#converters">Converters</a>
+                <a href="#security">Security</a>
+                <a href="#reference">Reference</a>
+                <a href="https://github.com/eladser/.net-tools" target="_blank" rel="noopener" class="external">GitHub</a>
+            </div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- JSON Tools -->
+        <section id="json">
+            <h2>JSON</h2>
+
+            <div class="tool-grid">
+                <div class="tool" id="json-formatter">
+                    <h3>Formatter & Validator</h3>
+                    <p class="tool-desc">Format, validate, and minify JSON. Highlights syntax errors with line numbers.</p>
+                    <textarea id="jsonInput" rows="8" placeholder='{"name": "value"}'></textarea>
+                    <div class="button-row">
+                        <button onclick="formatJson()">Format</button>
+                        <button onclick="minifyJson()" class="secondary">Minify</button>
+                        <button onclick="copyOutput('jsonOutput')" class="secondary">Copy</button>
+                    </div>
+                    <div id="jsonError" class="error"></div>
+                    <pre id="jsonOutput" class="output"></pre>
+                </div>
+
+                <div class="tool" id="json-to-csharp">
+                    <h3>JSON to C#</h3>
+                    <p class="tool-desc">Generate C# classes or records from JSON. Supports nullable reference types.</p>
+                    <textarea id="jsonToCsharpInput" rows="6" placeholder='{"id": 1, "name": "Test"}'></textarea>
+                    <div class="options-row">
+                        <label><input type="checkbox" id="useNullable" checked> Nullable</label>
+                        <label><input type="checkbox" id="useRecords"> Records</label>
+                        <label>Class: <input type="text" id="rootClassName" value="Root" class="input-sm"></label>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="jsonToCsharp()">Generate</button>
+                        <button onclick="copyOutput('csharpOutput')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="csharpOutput" class="output"></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generators -->
+        <section id="generators">
+            <h2>Generators</h2>
+
+            <div class="tool-grid">
+                <div class="tool" id="guid-gen">
+                    <h3>GUID Generator</h3>
+                    <p class="tool-desc">Generate UUIDs in various formats: standard, no hyphens, braces, or C# syntax.</p>
+                    <div class="options-row">
+                        <label>Count: <input type="number" id="guidCount" value="1" min="1" max="100" class="input-xs"></label>
+                        <select id="guidFormat">
+                            <option value="standard">d4f5a6b7-...</option>
+                            <option value="nohyphens">d4f5a6b7...</option>
+                            <option value="braces">{d4f5a6b7-...}</option>
+                            <option value="csharp">new Guid("...")</option>
+                        </select>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="generateGuids()">Generate</button>
+                        <button onclick="copyOutput('guidOutput')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="guidOutput" class="output mono"></pre>
+                </div>
+
+                <div class="tool" id="password-gen">
+                    <h3>Password Generator</h3>
+                    <p class="tool-desc">Create secure passwords with entropy-based strength meter.</p>
+                    <div class="pwd-options">
+                        <label class="pwd-length">Length: <input type="number" id="pwdLength" value="16" min="4" max="128" class="input-xs"></label>
+                        <div class="pwd-chars">
+                            <label><input type="checkbox" id="pwdUpper" checked> A-Z</label>
+                            <label><input type="checkbox" id="pwdLower" checked> a-z</label>
+                            <label><input type="checkbox" id="pwdNum" checked> 0-9</label>
+                            <label><input type="checkbox" id="pwdSym" checked> !@#</label>
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="generatePassword()">Generate</button>
+                        <button onclick="copyOutput('pwdOutput')" class="secondary">Copy</button>
+                    </div>
+                    <div id="pwdOutput" class="output mono"></div>
+                    <div id="pwdStrength" class="meter"></div>
+                </div>
+
+                <div class="tool" id="hash-gen">
+                    <h3>Hash Generator</h3>
+                    <p class="tool-desc">Compute MD5, SHA-1, SHA-256, and SHA-512 hashes. Click any hash to copy.</p>
+                    <textarea id="hashInput" rows="3" placeholder="Text to hash..."></textarea>
+                    <div class="button-row">
+                        <button onclick="generateHashes()">Generate</button>
+                    </div>
+                    <div id="hashOutput" class="hash-list"></div>
+                </div>
+
+                <div class="tool" id="cron-gen">
+                    <h3>Cron Builder</h3>
+                    <p class="tool-desc">Build cron expressions visually. Shows human-readable schedule description.</p>
+                    <div class="cron-row">
+                        <label><span>Min</span><input type="text" id="cronMin" value="0" class="input-xs"></label>
+                        <label><span>Hour</span><input type="text" id="cronHour" value="*" class="input-xs"></label>
+                        <label><span>Day</span><input type="text" id="cronDay" value="*" class="input-xs"></label>
+                        <label><span>Mon</span><input type="text" id="cronMon" value="*" class="input-xs"></label>
+                        <label><span>Wkd</span><input type="text" id="cronWkd" value="*" class="input-xs"></label>
+                    </div>
+                    <div class="cron-output-row">
+                        <div id="cronExpr" class="output mono cron-expr"></div>
+                        <button onclick="copyOutput('cronExpr')" class="secondary small">Copy</button>
+                    </div>
+                    <div id="cronDesc" class="text-muted"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Converters -->
+        <section id="converters">
+            <h2>Converters</h2>
+
+            <div class="tool-grid">
+                <div class="tool" id="base64-tool">
+                    <h3>Base64</h3>
+                    <p class="tool-desc">Encode text to Base64 or decode Base64 back to text. UTF-8 compatible.</p>
+                    <textarea id="b64Input" rows="4" placeholder="Text or Base64..."></textarea>
+                    <div class="button-row">
+                        <button onclick="encodeB64()">Encode</button>
+                        <button onclick="decodeB64()">Decode</button>
+                        <button onclick="copyOutput('b64Output')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="b64Output" class="output"></pre>
+                </div>
+
+                <div class="tool" id="timestamp-tool">
+                    <h3>Unix Timestamp</h3>
+                    <p class="tool-desc">Convert Unix timestamps to human-readable dates. Outputs ISO, local, and C# DateTime.</p>
+                    <div class="input-row">
+                        <input type="text" id="tsInput" placeholder="Unix timestamp or date...">
+                        <button onclick="tsNow()" class="secondary">Now</button>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="convertTs()">Convert</button>
+                    </div>
+                    <div id="tsOutput" class="ts-list"></div>
+                </div>
+
+                <div class="tool" id="base-converter">
+                    <h3>Number Base Converter</h3>
+                    <p class="tool-desc">Convert between decimal, hex, binary, and octal. Useful for bitwise ops and debugging.</p>
+                    <div class="base-grid">
+                        <label><span>Decimal</span><input type="text" id="baseDec" placeholder="255"></label>
+                        <label><span>Hex</span><input type="text" id="baseHex" placeholder="FF"></label>
+                        <label><span>Binary</span><input type="text" id="baseBin" placeholder="11111111"></label>
+                        <label><span>Octal</span><input type="text" id="baseOct" placeholder="377"></label>
+                    </div>
+                    <div id="baseError" class="error"></div>
+                </div>
+
+                <div class="tool full" id="filesize-tool">
+                    <h3>File Size Converter</h3>
+                    <p class="tool-desc">Convert between storage units. Toggle binary (1024) or decimal (1000) mode.</p>
+                    <div class="options-row">
+                        <label><input type="radio" name="sizeMode" value="binary" checked> Binary (1024)</label>
+                        <label><input type="radio" name="sizeMode" value="decimal"> Decimal (1000)</label>
+                    </div>
+                    <div class="size-grid-full">
+                        <label><span>Bytes</span><input type="text" id="sizeBytes" placeholder="0"></label>
+                        <label><span>KB</span><input type="text" id="sizeKB" placeholder="0"></label>
+                        <label><span>MB</span><input type="text" id="sizeMB" placeholder="0"></label>
+                        <label><span>GB</span><input type="text" id="sizeGB" placeholder="0"></label>
+                        <label><span>TB</span><input type="text" id="sizeTB" placeholder="0"></label>
+                        <label><span>PB</span><input type="text" id="sizePB" placeholder="0"></label>
+                        <label><span>EB</span><input type="text" id="sizeEB" placeholder="0"></label>
+                    </div>
+                </div>
+
+                <div class="tool" id="timespan-tool">
+                    <h3>TimeSpan Calculator</h3>
+                    <p class="tool-desc">Convert between .NET ticks, milliseconds, and time components. Parse TimeSpan strings.</p>
+                    <div class="timespan-grid">
+                        <label><span>Days</span><input type="number" id="tsDays" value="0" min="0"></label>
+                        <label><span>Hours</span><input type="number" id="tsHours" value="0" min="0" max="23"></label>
+                        <label><span>Minutes</span><input type="number" id="tsMinutes" value="0" min="0" max="59"></label>
+                        <label><span>Seconds</span><input type="number" id="tsSeconds" value="0" min="0" max="59"></label>
+                        <label><span>Milliseconds</span><input type="number" id="tsMs" value="0" min="0"></label>
+                    </div>
+                    <div id="timespanOutput" class="ts-list"></div>
+                </div>
+
+                <div class="tool" id="escape-tool">
+                    <h3>String Escape</h3>
+                    <p class="tool-desc">Escape/unescape strings for C#, JSON, or SQL. Handles quotes, newlines, and special chars.</p>
+                    <textarea id="escInput" rows="4" placeholder="String to escape..."></textarea>
+                    <div class="options-row">
+                        <select id="escFormat">
+                            <option value="csharp">C#</option>
+                            <option value="json">JSON</option>
+                            <option value="sql">SQL</option>
+                        </select>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="escapeStr()">Escape</button>
+                        <button onclick="unescapeStr()">Unescape</button>
+                        <button onclick="copyOutput('escOutput')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="escOutput" class="output"></pre>
+                </div>
+
+                <div class="tool" id="url-tool">
+                    <h3>URL Encode</h3>
+                    <p class="tool-desc">Encode special characters for URLs or decode percent-encoded strings.</p>
+                    <textarea id="urlInput" rows="3" placeholder="URL or text..."></textarea>
+                    <div class="button-row">
+                        <button onclick="encodeUrl()">Encode</button>
+                        <button onclick="decodeUrl()">Decode</button>
+                        <button onclick="copyOutput('urlOutput')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="urlOutput" class="output"></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security & Debug -->
+        <section id="security">
+            <h2>Security & Debug</h2>
+
+            <div class="tool-grid">
+                <div class="tool" id="jwt-tool">
+                    <h3>JWT Decoder</h3>
+                    <p class="tool-desc">Decode JSON Web Tokens to inspect header, payload, and signature. No validation.</p>
+                    <textarea id="jwtInput" rows="4" placeholder="eyJhbGciOiJIUzI1NiIs..."></textarea>
+                    <div class="button-row">
+                        <button onclick="decodeJwt()">Decode</button>
+                    </div>
+                    <div id="jwtOutput" class="jwt-parts"></div>
+                </div>
+
+                <div class="tool" id="stack-tool">
+                    <h3>Stack Trace Analyzer</h3>
+                    <p class="tool-desc">Parse .NET stack traces into readable format. Highlights methods, files, and line numbers.</p>
+                    <textarea id="stackInput" rows="6" placeholder="System.NullReferenceException: Object reference..."></textarea>
+                    <div class="button-row">
+                        <button onclick="parseStack()">Analyze</button>
+                    </div>
+                    <div id="stackOutput" class="stack-list"></div>
+                </div>
+
+                <div class="tool" id="enum-flags-tool">
+                    <h3>Enum Flags Calculator</h3>
+                    <p class="tool-desc">Visualize bitwise [Flags] enum values. Enter a number to see which flags are set.</p>
+                    <div class="input-row">
+                        <input type="text" id="flagsInput" placeholder="Enter decimal value (e.g., 7)">
+                        <button onclick="calculateFlags()" class="secondary">Calculate</button>
+                    </div>
+                    <div class="flags-presets">
+                        <span class="text-muted">Presets:</span>
+                        <button onclick="setFlagsPreset('file')" class="secondary small">FileAttributes</button>
+                        <button onclick="setFlagsPreset('binding')" class="secondary small">BindingFlags</button>
+                        <button onclick="setFlagsPreset('custom')" class="secondary small">Custom</button>
+                    </div>
+                    <div id="flagsOutput" class="flags-list"></div>
+                </div>
+
+                <div class="tool" id="connstr-tool">
+                    <h3>Connection String Builder</h3>
+                    <p class="tool-desc">Generate connection strings for SQL Server, MySQL, PostgreSQL, or SQLite.</p>
+                    <div class="form-grid">
+                        <select id="dbType" onchange="updateDbFields()">
+                            <option value="sqlserver">SQL Server</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="postgres">PostgreSQL</option>
+                            <option value="sqlite">SQLite</option>
+                        </select>
+                        <input type="text" id="dbServer" placeholder="Server" value="localhost">
+                        <input type="text" id="dbName" placeholder="Database" value="MyDb">
+                        <input type="text" id="dbUser" placeholder="User" value="sa">
+                        <input type="password" id="dbPass" placeholder="Password">
+                    </div>
+                    <div class="options-row">
+                        <label><input type="checkbox" id="dbIntegrated"> Integrated Security</label>
+                        <label><input type="checkbox" id="dbTrust"> Trust Cert</label>
+                    </div>
+                    <div class="button-row">
+                        <button onclick="buildConnStr()">Build</button>
+                        <button onclick="copyOutput('connOutput')" class="secondary">Copy</button>
+                    </div>
+                    <pre id="connOutput" class="output mono"></pre>
+                </div>
+
+                <div class="tool" id="regex-tool">
+                    <h3>Regex Tester</h3>
+                    <p class="tool-desc">Test regular expressions in real-time. Supports ignore case, global, and multiline flags.</p>
+                    <div class="input-row">
+                        <input type="text" id="regexPat" placeholder="Pattern">
+                        <label><input type="checkbox" id="regexI"> i</label>
+                        <label><input type="checkbox" id="regexG" checked> g</label>
+                        <label><input type="checkbox" id="regexM"> m</label>
+                    </div>
+                    <textarea id="regexInput" rows="4" placeholder="Test string..."></textarea>
+                    <div id="regexOutput" class="regex-matches"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reference -->
+        <section id="reference">
+            <h2>Reference</h2>
+
+            <div class="tool-grid">
+                <div class="tool full" id="http-tool">
+                    <h3>HTTP Status Codes</h3>
+                    <p class="tool-desc">Quick reference for HTTP status codes. Search by code or description.</p>
+                    <input type="text" id="httpSearch" placeholder="Search (e.g., 404, not found)..." class="search-input">
+                    <div id="httpList" class="http-grid"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <span>by <a href="https://github.com/eladser" target="_blank">eladser</a></span>
+            <a href="https://ko-fi.com/eladser" target="_blank" class="kofi-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/>
+                </svg>
+                Support
+            </a>
+        </div>
+        <a href="https://github.com/eladser/.net-tools" target="_blank">source</a>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
