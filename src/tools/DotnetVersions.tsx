@@ -5,7 +5,7 @@ import { ChevronDown, ChevronRight } from 'lucide-react';
 const VERSIONS = [
   {
     version: '.NET 11', tfm: 'net11.0', csharp: 'C# 15', released: 'Nov 2026 (preview)',
-    kind: 'STS', until: '~May 2028',
+    kind: 'STS', until: 'Nov 2028',
     summary: 'In preview. Union types, runtime async, Zstandard compression.',
     state: 'preview' as const,
     features: [
@@ -35,7 +35,7 @@ const VERSIONS = [
   },
   {
     version: '.NET 9', tfm: 'net9.0', csharp: 'C# 13', released: 'Nov 2024',
-    kind: 'STS', until: 'May 2026',
+    kind: 'STS', until: 'Nov 2026',
     summary: 'Guid.CreateVersion7, Base64Url, params collections, HybridCache.',
     state: 'eol' as const,
     features: [
@@ -52,7 +52,7 @@ const VERSIONS = [
     version: '.NET 8', tfm: 'net8.0', csharp: 'C# 12', released: 'Nov 2023',
     kind: 'LTS', until: 'Nov 2026',
     summary: 'Primary constructors, collection expressions, TimeProvider, frozen collections.',
-    state: 'active' as const,
+    state: 'eol' as const,
     features: [
       'Primary constructors for any class, not just records',
       'Collection expressions: int[] x = [1, 2, 3]',
@@ -166,7 +166,7 @@ export function DotnetVersions() {
         })}
       </div>
       <p className="font-mono text-xs text-faint">
-        Even-numbered releases are LTS (3 years); odd are STS (18 months). New majors land every November. Click a version for its major features.
+        Even-numbered releases are LTS (3 years); odd are STS (2 years, 18 months up to .NET 7). New majors land every November. Click a version for its major features.
       </p>
     </div>
   );

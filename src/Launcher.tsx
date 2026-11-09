@@ -20,7 +20,9 @@ function StatusStrip() {
       <span>unix <span className="text-muted">{unix}</span></span>
       <span className="hidden sm:inline">utc <span className="text-muted">{now.toISOString().slice(0, 19)}Z</span></span>
       <span>current LTS <span className="text-accent">.NET 10</span> <span className="hidden md:inline">until Nov 2028</span></span>
-      <span className="hidden lg:inline">.NET 11 GA in <span className="text-muted">~{daysToNet11} days</span></span>
+      {daysToNet11 > 0 && (
+        <span className="hidden lg:inline">.NET 11 GA in <span className="text-muted">~{daysToNet11} days</span></span>
+      )}
     </div>
   );
 }
