@@ -13,7 +13,7 @@ Browser utilities for .NET developers. Paste on the left, read the result on the
 Twenty-five tools. The ones worth calling out:
 
 - **JSON to C#** converts snake_case keys to PascalCase properties with `[JsonPropertyName]`, recognizes dates and GUIDs, merges array items into a single type, and knows when a number needs `long`.
-- **GUID generator** does random v4 and the time-ordered v7 layout that `Guid.CreateVersion7()` produces in .NET 9.
+- **GUID generator** does random v4 and the time-ordered v7 layout that `Guid.CreateVersion7()` produces in .NET 9. Paste a GUID into Inspect to see its version and variant, and when a v7 was created.
 - **Config to env vars** turns appsettings.json keys into the `Section__Key` form Docker and Kubernetes want, and back.
 - **Date format tester** renders `DateTime.ToString` format strings live as you type.
 - **.NET versions** is a reference table of TFMs, C# pairings, and support windows. Each release expands to its major features, Framework 4.8.1 through the .NET 11 preview.
